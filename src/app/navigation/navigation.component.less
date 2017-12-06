@@ -1,0 +1,268 @@
+#flipkart-navbar,.smallNavHeader {
+    background-color: #00a680;
+    color: #FFFFFF;
+}
+
+.row1{
+    padding-top: 10px;
+}
+
+.row2 {
+    margin-top: 10px;
+}
+h4{
+    margin: 0px;
+    small{
+    color: #fff;
+    }
+}
+
+.upper-links {
+    display: inline-block;
+    padding: 0 11px;
+    line-height: 23px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0;
+    color: inherit;
+    border: none;
+    outline: none;
+    font-size: 12px;
+
+    & > .links{
+font-size: 16px;
+
+&:hover{
+    font-weight: bold;
+}
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0px;
+    .profile-li{
+        padding: 5px;
+    }
+}
+
+.dropdown:hover {
+    background-color: #fff;
+}
+
+.dropdown:hover .links {
+    color: green;
+    font-weight: bold;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    display: none;
+    background-color: #fff;
+    color: #333;
+    left: 0px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 0 4px 8px -3px #555454;
+    margin: 0;
+    padding: 0px;
+}
+
+.links {
+    color: #fff;
+    text-decoration: none;
+}
+
+.links:hover {
+    color: green;
+    text-decoration: none;
+}
+
+.profile-links {
+    border-bottom: 1px solid #00a680;
+    box-sizing: border-box;
+}
+
+.profile-li{
+    padding-top: 2px;
+}
+
+.largenav {
+    display: none;
+}
+
+.smallnav{
+    display: block;
+}
+
+.smallsearch{
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.menu{
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .largenav {
+        display: block;
+    }
+    .smallnav{
+        display: none;
+    }
+    .smallsearch{
+        margin: 0px;
+    }
+}
+
+/*Sidenav*/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    box-shadow: 0 4px 8px -3px #555454;
+    padding-top: 0px;
+}
+
+.sidenav a {
+
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #fff;        
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav a {font-size: 18px;}
+}
+
+.sidenav-heading{
+    font-size: 36px;
+    color: #fff;
+}
+
+.closedNav{
+width:px;
+ background-color: rgba(0,0,0,0);
+}
+.opnedNav{
+    width:70%;
+ background-color: rgba(0,0,0,0.4);
+}
+
+
+
+.panel-group .panel-heading + .panel-collapse > .panel-body {
+    border: 1px solid #ddd;
+}
+
+.panel-group,
+.panel-group .panel,
+.panel-group .panel-heading,
+.panel-group .panel-heading a,
+.panel-group .panel-title,
+.panel-group .panel-title a,
+.panel-group .panel-body,
+.panel-group .panel-group .panel-heading + .panel-collapse > .panel-body {
+    border-radius: 2px;
+    border: 0;
+}
+
+.panel-group .panel-heading {
+    padding: 0;
+}
+
+.panel-group .panel-heading a {
+    display: block;
+    background: #00a680;
+    color: #ffffff;
+    padding: 5px 10px;
+    text-decoration: none;
+    position: relative;
+}
+
+.panel-group .panel-heading a.collapsed {
+    background: #eeeeee;
+    color: inherit;
+}
+
+.panel-group .panel-heading a:after {
+    content: '\f077';
+    font-family: FontAwesome;
+    position: absolute;
+    right: 20px;
+    font-size: 16px;
+}
+
+.panel-group .panel-heading a.collapsed:after {
+    content: '\f078';
+    font-family: FontAwesome;
+    position: absolute;
+}
+
+.panel-group .panel-collapse {
+    margin-top: 5px !important;
+}
+
+.panel-group .panel-body {
+    background: #ffffff;
+    padding: 0px 15px;
+}
+
+.panel-group .panel {
+    background-color: transparent;
+}
+
+.panel-group .panel-body p:last-child,
+.panel-group .panel-body ul:last-child,
+.panel-group .panel-body ol:last-child {
+    margin-bottom: 0;
+}
+
+.panel-group{
+ul {
+    li {
+        border-bottom: solid 1px gray;
+        padding:  5px;
+
+        &:last-of-type {
+            border: none;
+        }
+    }
+}
+}
+.panel-group{
+    &:first-of-type{
+        margin-top:30px;
+    }
+}
+
+.overlay-content{
+    margin-top:50px !important;
+}
+
+h1,h2{
+    font-family: initial;
+}

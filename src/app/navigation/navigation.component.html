@@ -1,0 +1,116 @@
+<div id="flipkart-navbar">
+    <div class="container">
+        <div class="row row2">
+            <div class="col-sm-11">
+                <h2 style="margin:0px;"><span class="smallnav menu" (click)="openNav()">☰ Saint Louis Indians</span></h2>
+                <h1 class="text-center" style="margin:0px;"><span class="largenav">Saint Louis Indians </span></h1>
+                <h4 class="text-center"><small>Local Desi Community Portal</small></h4>
+            </div>
+
+        </div>
+        <div class="row row1">
+            <ul class="largenav">
+                <ng-container *ngFor="let cat of categories">
+                    <li class="upper-links dropdown"><a class="links" href="http://clashhacks.in/">{{cat.Category}} <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <ng-container *ngFor="let subcat of cat.SubCategoriesList">
+                                <li class="profile-li"><a class="profile-links" href="http://yazilife.com/">{{subcat.SubCategory}}</a></li>
+                            </ng-container>
+                        </ul>
+                    </li>
+                </ng-container>
+                <li class="upper-links dropdown pull-right"><a class="links" href="http://clashhacks.in/"><i class="fa fa-user"></i> Profile <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="profile-li"><a class="profile-links" routerLink="login">Login</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="register">Register</a></li>
+                    </ul>
+                </li>
+                <li class="upper-links dropdown pull-right">
+                    <a class="links" href="#"><i class="fa fa-buysellads"></i> Adds <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="profile-li"><a class="profile-links" routerLink="myadds" >Manage My Adds</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="postadd" >Post A New Add</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div [style.width]="navWidth" id="mySidenav" class="sidenav">
+    <div class="container smallNavHeader" style="padding-top: 10px;" (click)="closeNav()">
+       <a routerLink="home"> <span class="sidenav-heading">Home</span></a>
+        <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
+    </div>
+    <div class="panel-group overlay-content" id="accordion">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                   <i class="fa fa-list-ul"></i> Categories 
+                </a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <div class="panel-group" id="nested">
+                        <ng-container *ngFor="let cat of categories let i=index">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" class="collapsed" data-parent="#nested" href="#nested-collapse{{i}}">
+                                        {{cat.Category}}
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="nested-collapse{{i}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="list-unstyled">
+                                            <ng-container *ngFor="let subcat of cat.SubCategoriesList">
+                                                <li (click)="closeNav()"><a>{{subcat.SubCategory}}</a></li>
+                                            </ng-container>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseAdds">
+                    <i class="fa fa-buysellads"></i> Adds
+                </a>
+                </h4>
+            </div>
+            <div id="collapseAdds" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul class="list-unstyled">
+                        <li (click)="closeNav()"><a routerLink="myadds">Manage My Adds</a></li>
+                        <li (click)="closeNav()"><a routerLink="postadd">Post A New Add</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseOne">
+                    <i class="fa fa-user-circle"></i> Account
+                </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul class="list-unstyled">
+                        <li (click)="closeNav()"><a routerLink="login">Login</a></li>
+                        <li (click)="closeNav()"><a routerLink="register">Register</a> </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
