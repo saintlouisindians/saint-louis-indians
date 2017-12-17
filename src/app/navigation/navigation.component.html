@@ -8,23 +8,27 @@
             </div>
 
         </div>
-        <div class="row row1">
+        <div class="row row1" *ngIf="navigationData">
             <ul class="largenav">
-                <ng-container *ngFor="let cat of categories">
-                    <li class="upper-links dropdown"><a class="links" href="http://clashhacks.in/">{{cat.Category}} <i class="fa fa-angle-down"></i></a>
+                <ng-container *ngFor="let cat of navigationData.Categories">
+                    <li class="upper-links dropdown"><a class="links" href="#">{{cat.Name}} <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
-                            <ng-container *ngFor="let subcat of cat.SubCategoriesList">
-                                <li class="profile-li"><a class="profile-links" href="http://yazilife.com/">{{subcat.SubCategory}}</a></li>
+                            <ng-container *ngFor="let subcat of cat.SubCategories">
+                                <li class="profile-li"><a class="profile-links" routerLink="/adds/{{subcat.ID}}">{{subcat.Name}}</a></li>
                             </ng-container>
                         </ul>
                     </li>
                 </ng-container>
-                <li class="upper-links dropdown pull-right"><a class="links" href="http://clashhacks.in/"><i class="fa fa-user"></i> Profile <i class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li class="profile-li"><a class="profile-links" routerLink="login">Login</a></li>
-                        <li class="profile-li"><a class="profile-links" routerLink="register">Register</a></li>
-                    </ul>
-                </li>
+                <ng-container *ngFor="let cat of navigationData.BusinessCategories">
+                    <li class="upper-links dropdown"><a class="links" href="http://clashhacks.in/">{{cat.Name}} <i class="fa fa-angle-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <ng-container *ngFor="let subcat of cat.BusinessSubCategories">
+                                <li class="profile-li"><a class="profile-links" href="http://yazilife.com/">{{subcat.Name}}</a></li>
+                            </ng-container>
+                        </ul>
+                    </li>
+                </ng-container>
+                <li class="upper-links pull-right"><app-login-status></app-login-status></li>
                 <li class="upper-links dropdown pull-right">
                     <a class="links" href="#"><i class="fa fa-buysellads"></i> Adds <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
@@ -40,8 +44,9 @@
     <div class="container smallNavHeader" style="padding-top: 10px;" (click)="closeNav()">
        <a routerLink="home"> <span class="sidenav-heading">Home</span></a>
         <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
+        <app-login-status></app-login-status>
     </div>
-    <div class="panel-group overlay-content" id="accordion">
+    <div class="panel-group overlay-content" id="accordion" *ngIf="navigationData">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -53,20 +58,40 @@
             <div id="collapseTwo" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="panel-group" id="nested">
-                        <ng-container *ngFor="let cat of categories let i=index">
+                        <ng-container *ngFor="let cat of navigationData.Categories let i=index">
                             <div class="panel panel-success">
                                 <div class="panel-heading">
                                     <h4 class="panel-title">
-                                        <a data-toggle="collapse" class="collapsed" data-parent="#nested" href="#nested-collapse{{i}}">
-                                        {{cat.Category}}
+                                        <a data-toggle="collapse" class="collapsed" data-parent="#nested" href="#nested-collapseCat{{i}}">
+                                        {{cat.Name}}
                                     </a>
                                     </h4>
                                 </div>
-                                <div id="nested-collapse{{i}}" class="panel-collapse collapse">
+                                <div id="nested-collapseCat{{i}}" class="panel-collapse collapse">
                                     <div class="panel-body">
                                         <ul class="list-unstyled">
-                                            <ng-container *ngFor="let subcat of cat.SubCategoriesList">
-                                                <li (click)="closeNav()"><a>{{subcat.SubCategory}}</a></li>
+                                            <ng-container *ngFor="let subcat of cat.SubCategories">
+                                                <li (click)="closeNav()"><a routerLink="/adds/{{subcat.ID}}">{{subcat.Name}}</a></li>
+                                            </ng-container>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngFor="let cat of navigationData.BusinessCategories let i=index">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" class="collapsed" data-parent="#nested" href="#nested-collapseBus{{i}}">
+                                        {{cat.Name}}
+                                    </a>
+                                    </h4>
+                                </div>
+                                <div id="nested-collapseBus{{i}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="list-unstyled">
+                                            <ng-container *ngFor="let subcat of cat.BusinessSubCategories">
+                                                <li (click)="closeNav()"><a>{{subcat.Name}}</a></li>
                                             </ng-container>
                                         </ul>
                                     </div>
@@ -114,3 +139,5 @@
         
     </div>
 </div>
+
+<app-modal [modelPopup]="modal"></app-modal>

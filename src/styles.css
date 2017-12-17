@@ -6,3 +6,18 @@
     background-color: #00a680 !important;
     border-color:#00a680;
 }
+
+h3{
+    color:#00a680;
+    text-align: center;
+}
+
+input.ng-dirty.ng-invalid{
+    border-left: solid 5px #a94442;
+    border-right: solid 5px #a94442;
+}
+
+input.ng-dirty.ng-valid{
+    border-left: solid 5px green;
+    border-right: solid 5px green;
+}

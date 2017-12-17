@@ -1,0 +1,28 @@
+<h3>Adds</h3>
+<div class="col-md-10 col-md-offset-1 col-xs-12" *ngFor="let add of adds">
+
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <strong>{{add.Title}}</strong>
+      <small *ngIf="add.Price>0" class="pull-right text-primary badge"><label>Price: </label>${{add.Price}}</small>
+    </div>
+
+    <div class="panel-body">
+      <ul class="list-unstyled">
+        <li>{{add.Description}}</li>
+      </ul>
+      <ul class="list-unstyled text-center">
+        <li><label><i class="fa fa-envelope"></i> Email:</label> <a href="http://mailto:{{add.Email}}">{{add.Email}}</a></li>
+        <li><label><i class="fa fa-phone"></i> Phone:</label><a href="tel:{{add.Phone}}">({{add.Phone.substring(0,3)}})-{{add.Phone.substring(3,6)}}-{{add.Phone.substring(6,10)}}</a></li>
+        <li><label><i class="fa fa-calendar"></i> Date Posted: </label> {{add.DateCreated | date:'mediumDate'}}</li>
+      </ul>
+      <ul class="list-unstyled text-center">
+       <li><button class="btn btn-link" (click)="hideme[add.ID] = !hideme[add.ID]"><i class="fa fa-plus-square-o" [class.hidden]="hideme[add.ID]"> Show Image</i> <i class="fa fa-minus-square-o" [class.hidden]="!hideme[add.ID]"> Hide Image</i></button></li>
+        <li><img class="img-responsive" [class.hidden]="!hideme[add.ID]" src="{{test}}" /></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<app-modal [modelPopup]="modal"></app-modal>

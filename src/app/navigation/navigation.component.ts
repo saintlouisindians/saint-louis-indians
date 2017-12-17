@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NavigationService } from '../services/navigation.service';
+import {ModalPopUp} from '../models/modalPopUp'
 
 @Component({
     selector: 'navigation',
     templateUrl: 'navigation.component.html',
     styleUrls: ['navigation.component.less']
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit {
     navWidth = '0px';
+    modal:ModalPopUp;
     closeNav = function () {
         this.navWidth = '0px';
     }
@@ -14,8 +17,29 @@ export class NavigationComponent {
     openNav = function () {
         this.navWidth = '70%';
     }
+    navigationData: any;
+    IsLoggedIn = true;
+    constructor(private navigationSvc: NavigationService) {
+    }
 
-    IsLoggedIn=true;
+    ngOnInit() {
+        this.modal={
+            type:'loading',
+            operation:'open',
+            message:'success'
+        }
+        this.getNavigationData();
+    }
+
+    getNavigationData() {
+        this.navigationSvc.getNavigationData().subscribe(
+            (resp) => {
+                this.navigationData = resp;
+                this.modal.operation='close';
+                localStorage.setItem('navigationData',JSON.stringify(resp));
+            }
+        )
+    }
     categories = [{
         Category: 'Category1',
         SubCategoriesList: [{
@@ -38,7 +62,7 @@ export class NavigationComponent {
     },
     {
         Category: 'Category2',
-           SubCategoriesList: [{
+        SubCategoriesList: [{
             ID: 1,
             SubCategory: 'Sub Cat 1'
         },
@@ -58,7 +82,7 @@ export class NavigationComponent {
     },
     {
         Category: 'Category3',
-       SubCategoriesList: [{
+        SubCategoriesList: [{
             ID: 1,
             SubCategory: 'Sub Cat 1'
         },

@@ -1,0 +1,2 @@
+<a *ngIf="profileService.getLoginStatus()" routerLink="logout" class="pull-right links"><i class="fa fa-user"></i> Logout</a>
+<a *ngIf="!profileService.getLoginStatus()" routerLink="login" class="pull-right links"><i class="fa fa-user"></i> Login</a>

@@ -1,0 +1,20 @@
+<div *ngIf="modelPopup && modelPopup.operation==='open'" id="loading">
+  <div *ngIf="modelPopup.type!='loading'" class="col-md-5 col-xs-11">
+    <div>
+      <i class="fa fa-window-close-o text-success pull-right" (click)="closeModal()"></i>
+    </div>
+    <ul class="list-unstyled" [class]="modelPopup.type=='success'?'text-success list-unstyled':'text-danger list-unstyled'">
+      <li>
+        <i *ngIf="modelPopup.type=='success'" class="fa fa-thumbs-o-up fa-2x"></i>
+        <i *ngIf="modelPopup.type=='error'" class="fa fa-exclamation-circle fa-2x"></i>
+      </li>
+      <li>{{modelPopup.message}}</li>
+      <li>
+        <button class="btn btn-success form-control" (click)="closeModal()">Ok</button>
+      </li>
+    </ul>
+  </div>
+  <p *ngIf="modelPopup.type=='loading'">
+    <i class="fa fa-spinner fa-spin fa-4x fa-fw"></i>
+  </p>
+</div>
