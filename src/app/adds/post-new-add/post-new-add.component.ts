@@ -21,7 +21,7 @@ export class PostNewAddComponent implements OnInit {
     this.getSubCategories();
     this.addForm = this.fb.group({
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      description: new FormControl('', [Validators.required, Validators.maxLength(300)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(500)]),
       image: new FormControl(this.src),
       price: new FormControl(),
       subCategoryID: new FormControl(1),

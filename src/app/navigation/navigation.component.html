@@ -11,10 +11,10 @@
         <div class="row row1" *ngIf="navigationData">
             <ul class="largenav">
                 <ng-container *ngFor="let cat of navigationData.Categories">
-                    <li class="upper-links dropdown"><a class="links" href="#">{{cat.Name}} <i class="fa fa-angle-down"></i></a>
+                    <li class="upper-links dropdown"><a class="links" routerLink="/subcategories/{{cat.ID}}/{{cat.Name}}" >{{cat.Name}} <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             <ng-container *ngFor="let subcat of cat.SubCategories">
-                                <li class="profile-li"><a class="profile-links" routerLink="/adds/{{subcat.ID}}">{{subcat.Name}}</a></li>
+                                <li class="profile-li"><a class="profile-links" routerLink="/adds/{{subcat.ID}}/{{subcat.Name}}">{{subcat.Name}}</a></li>
                             </ng-container>
                         </ul>
                     </li>
@@ -71,7 +71,7 @@
                                     <div class="panel-body">
                                         <ul class="list-unstyled">
                                             <ng-container *ngFor="let subcat of cat.SubCategories">
-                                                <li (click)="closeNav()"><a routerLink="/adds/{{subcat.ID}}">{{subcat.Name}}</a></li>
+                                                <li (click)="closeNav()"><a routerLink="/adds/{{subcat.ID}}/{{subcat.Name}}">{{subcat.Name}}</a></li>
                                             </ng-container>
                                         </ul>
                                     </div>

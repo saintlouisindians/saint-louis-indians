@@ -19,6 +19,7 @@ export class AddsComponent implements OnInit {
   }
   showImg: any = {};
   hideme = {};
+  subCategoryName:string;
   ngOnInit() {
     this.modal = {
       type: 'loading',
@@ -29,6 +30,7 @@ export class AddsComponent implements OnInit {
     this.router.params.subscribe(
       params=>{
         let id = +params['id'];
+        this.subCategoryName=params['name']
         this.getAdds(id);
       }
     )

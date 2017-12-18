@@ -27,6 +27,7 @@ import { NavigationService} from './services/navigation.service';
 import {AddsService } from './services/adds.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './utility/TokenInterceptor';
+import { SubcategoriesComponent } from './subcategories/subcategories.component';
 
 
 
@@ -45,7 +46,8 @@ import { TokenInterceptor } from './utility/TokenInterceptor';
     ConfirmEmailComponent,
     LoginStatusComponent,
     LogoutComponent,
-    AddsComponent
+    AddsComponent,
+    SubcategoriesComponent
   ],
   imports: [
     BrowserModule,
