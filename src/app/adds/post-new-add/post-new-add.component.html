@@ -7,26 +7,36 @@
     </select>
     </div>
     <div class="form-group">
-      <input type="text" formControlName="title" class="form-control" placeholder="Title" />
+      <input type="text" formControlName="title" class="form-control" placeholder="Title*" />
+      <div *ngIf="addForm.get('title').dirty && addForm.get('title').value==''" class="text-danger">
+        Required.
+      </div>
     </div>
     <div class="form-group">
-      <input type="email" formControlName="contactEmail" class="form-control" placeholder="Email" />
+      <input type="email" formControlName="contactEmail" class="form-control" placeholder="Email*" />
+      <div *ngIf="addForm.get('contactEmail').dirty && addForm.get('contactEmail').value==''" class="text-danger">
+        Required.
+      </div>
     </div>
     <div class="form-group">
-      <input type="phone" formControlName="contactPhone" class="form-control" placeholder="Phone" />
-    </div>
-        <div class="form-group">
-      <input type="phone" formControlName="price" class="form-control" placeholder="Price" />
+      <input type="phone" formControlName="contactPhone" class="form-control" placeholder="Phone(optional)" />
     </div>
     <div class="form-group">
-      <textarea type="text" formControlName="description" class="form-control" placeholder="Description"></textarea>
+      <input type="phone" formControlName="price" class="form-control" placeholder="Price(optional)" />
     </div>
     <div class="form-group">
-      <input class="form-control" type="file" name="Image" ngModel imageUpload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions"
-      />
+      <textarea type="text" formControlName="description" class="form-control" placeholder="Description*"></textarea>
+          <div *ngIf="addForm.get('description').dirty && addForm.get('description').value==''" class="text-danger">
+        Required.
+      </div>
     </div>
     <div class="form-group">
-      <button type="button" (click)="onSubmit()" class="btn btn-success form-control">Submit</button>
+      <label>Upload image <small> (optional)</small></label>
+      <input class="form-control" type="file" name="Image" formControlName="image" imageUpload (imageSelected)="selected($event)"
+        [resizeOptions]="resizeOptions" />
+    </div>
+    <div class="form-group">
+      <button type="button" (click)="onSubmit()" [disabled]="!addForm.valid" class="btn btn-success form-control">Submit</button>
     </div>
   </form>
 </div>

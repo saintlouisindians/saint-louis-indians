@@ -12,12 +12,12 @@ h3{
     text-align: center;
 }
 
-input.ng-dirty.ng-invalid{
+input.ng-dirty.ng-invalid, textarea.ng-dirty.ng-invalid{
     border-left: solid 5px #a94442;
     border-right: solid 5px #a94442;
 }
 
-input.ng-dirty.ng-valid{
+input.ng-dirty.ng-valid, textarea.ng-dirty.ng-valid{
     border-left: solid 5px green;
     border-right: solid 5px green;
 }

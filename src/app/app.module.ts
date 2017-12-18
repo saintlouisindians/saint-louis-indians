@@ -24,7 +24,9 @@ import { AddsComponent } from './adds/adds/adds.component';
 import { ProfileService } from './services/profile.service';
 import { AuthGuard } from './utility/utility.auth-guard';
 import { NavigationService} from './services/navigation.service';
-import {AddsService } from './services/adds.service'
+import {AddsService } from './services/adds.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './utility/TokenInterceptor';
 
 
 
@@ -53,7 +55,11 @@ import {AddsService } from './services/adds.service'
     HttpClientModule,
     ImageUploadModule
   ],
-  providers: [ProfileService, AuthGuard, NavigationService, AddsService],
+  providers: [ProfileService, AuthGuard, NavigationService, AddsService,{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

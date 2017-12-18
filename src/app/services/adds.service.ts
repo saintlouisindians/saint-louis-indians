@@ -18,6 +18,16 @@ export class AddsService {
     )
   }
 
+  createAdd(add: Add) {
+    return this.http.post(AppSettings.apiUrl + '/api/adds/createAdd', add).pipe(
+      catchError(this.handleError('createAdd'))
+    )
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('access_token');
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
