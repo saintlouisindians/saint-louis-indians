@@ -1,0 +1,26 @@
+<h3>{{BusinessSubCategory}}</h3>
+
+<div *ngIf="businesses" class="col-md-8 col-md-offset-2 col-xs-12">
+  <div class="panel panel-success" *ngFor="let bus of businesses">
+    <div class="panel-heading"><strong>{{bus.Name}}</strong><small> {{bus.Description}}</small>
+    <span class="pull-right badge">{{bus.WebLink}}</span>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-4">
+        <i class="fa fa-envelope"></i><a href="http://mailto:{{bus.Email}}"> {{bus.Email}}</a>
+      </div>
+      <div class="col-md-4">
+        <i class="fa fa-phone"></i><a href="tel:{{bus.Phone}}"> {{bus.Phone}} </a>
+      </div>
+      <div class="col-md-4">
+        <ul class="list-unstyled" *ngIf=bus.Address>
+          <li>{{bus.Address.Address1}}</li>
+          <li *ngIf="bus.Address.Address2">{{bus.Address.Address2}}</li>
+          <li>{{bus.Address.State}} {{bus.Address.City}} {{bus.Address.ZipCode}}</li>        
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal [modelPopup]="modal"></app-modal>

@@ -20,10 +20,10 @@
                     </li>
                 </ng-container>
                 <ng-container *ngFor="let cat of navigationData.BusinessCategories">
-                    <li class="upper-links dropdown"><a class="links" href="http://clashhacks.in/">{{cat.Name}} <i class="fa fa-angle-down"></i></a>
+                    <li class="upper-links dropdown"><a class="links" href="#">{{cat.Name}} <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             <ng-container *ngFor="let subcat of cat.BusinessSubCategories">
-                                <li class="profile-li"><a class="profile-links" href="http://yazilife.com/">{{subcat.Name}}</a></li>
+                                <li class="profile-li"><a class="profile-links" routerLink="/business/{{subcat.ID}}/{{subcat.Name}}">{{subcat.Name}}</a></li>
                             </ng-container>
                         </ul>
                     </li>

@@ -18,16 +18,18 @@ import { ConfirmEmailComponent } from './profile/confirm-email/confirm-email.com
 import { LoginStatusComponent } from './profile/login-status/login-status.component';
 import { LogoutComponent } from './profile/logout/logout.component'
 import { AddsComponent } from './adds/adds/adds.component';
+import { BusinessComponent } from './business/business/business.component';
 
 
 
 import { ProfileService } from './services/profile.service';
 import { AuthGuard } from './utility/utility.auth-guard';
-import { NavigationService} from './services/navigation.service';
-import {AddsService } from './services/adds.service';
+import { NavigationService } from './services/navigation.service';
+import { AddsService } from './services/adds.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './utility/TokenInterceptor';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { BusinessService } from './services/business.service';
 
 
 
@@ -47,7 +49,8 @@ import { SubcategoriesComponent } from './subcategories/subcategories.component'
     LoginStatusComponent,
     LogoutComponent,
     AddsComponent,
-    SubcategoriesComponent
+    SubcategoriesComponent,
+    BusinessComponent
   ],
   imports: [
     BrowserModule,
@@ -57,11 +60,11 @@ import { SubcategoriesComponent } from './subcategories/subcategories.component'
     HttpClientModule,
     ImageUploadModule
   ],
-  providers: [ProfileService, AuthGuard, NavigationService, AddsService,{
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }],
+  providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

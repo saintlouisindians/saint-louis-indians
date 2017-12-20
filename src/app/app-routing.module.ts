@@ -10,6 +10,7 @@ import { AuthGuard } from './utility/utility.auth-guard';
 import { LogoutComponent } from './profile/logout/logout.component';
 import { AddsComponent } from './adds/adds/adds.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
+import { BusinessComponent } from './business/business/business.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'confirm-email', component: ConfirmEmailComponent },
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'adds/:id/:name', component: AddsComponent },
-  { path: 'subcategories/:id/:name', component: SubcategoriesComponent }
+  { path: 'subcategories/:id/:name', component: SubcategoriesComponent },
+  { path: 'business/:id/:name', component: BusinessComponent }
 ]
 
 @NgModule({
