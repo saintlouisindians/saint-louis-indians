@@ -4,12 +4,12 @@
 
 <h3>{{subCategoryName}}</h3>
 
-<div class="col-md-10 col-md-offset-1 col-xs-12" *ngFor="let add of adds">
+<div class="col-md-9 col-xs-12" *ngFor="let add of adds">
 
   <div class="panel panel-success">
     <div class="panel-heading">
       <strong>{{add.Title}}</strong>
-      <small *ngIf="add.Price>0" class="pull-right text-primary badge"><label>Price: </label>${{add.Price}}</small>
+      <small *ngIf="add.Price>0" class="pull-right text-primary badge">$ {{add.Price}}</small>
     </div>
 
     <div class="panel-body">

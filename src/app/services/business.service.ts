@@ -17,6 +17,11 @@ export class BusinessService {
     )
   }
 
+  addBusiness(business: Business) {
+    return this.http.post(AppSettings.apiUrl + '/api/business/add', business).pipe(
+      catchError(this.handleError<any>('addBusiness'))
+    )
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

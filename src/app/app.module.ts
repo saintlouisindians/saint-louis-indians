@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageUploadModule } from 'ng2-imageupload';
-
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -19,10 +19,13 @@ import { LoginStatusComponent } from './profile/login-status/login-status.compon
 import { LogoutComponent } from './profile/logout/logout.component'
 import { AddsComponent } from './adds/adds/adds.component';
 import { BusinessComponent } from './business/business/business.component';
+import { AddBusinessComponent } from './business/add-business/add-business.component';
+
 
 
 
 import { ProfileService } from './services/profile.service';
+import { MoviesService } from './services/movies.service';
 import { AuthGuard } from './utility/utility.auth-guard';
 import { NavigationService } from './services/navigation.service';
 import { AddsService } from './services/adds.service';
@@ -30,6 +33,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './utility/TokenInterceptor';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { BusinessService } from './services/business.service';
+import { QuickLinksComponent } from './quick-links/quick-links.component';
+import { AddMovieComponent } from './movies/add-movie/add-movie.component';
+import { MoviesComponent } from './movies/movies/movies.component';
 
 
 
@@ -50,7 +56,11 @@ import { BusinessService } from './services/business.service';
     LogoutComponent,
     AddsComponent,
     SubcategoriesComponent,
-    BusinessComponent
+    BusinessComponent,
+    AddBusinessComponent,
+    QuickLinksComponent,
+    AddMovieComponent,
+    MoviesComponent
   ],
   imports: [
     BrowserModule,
@@ -58,9 +68,9 @@ import { BusinessService } from './services/business.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ImageUploadModule
+    ImageUploadModule, NgDatepickerModule
   ],
-  providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, {
+  providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, MoviesService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true

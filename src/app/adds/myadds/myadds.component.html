@@ -1,3 +1,35 @@
-<p>
-  myadds works!
-</p>
+
+
+<div class="col-md-9 col-xs-12">
+<h3>My Adds <small><a class="add-btn pull-right" routerLink="/postadd">Post an Add</a></small></h3>
+
+  <div class="panel panel-success animated"  *ngFor="let add of adds" [ngClass]="animationClass[add.ID]">
+    <div class="panel-heading">
+      <strong>{{add.Title}}</strong>
+      <small *ngIf="add.Price>0" class="pull-right text-primary badge">$ <em>{{add.Price}}</em></small>
+    </div>
+
+    <div class="panel-body">
+      <ul class="list-unstyled">
+        <li>{{add.Description}}</li>
+      </ul>
+      <ul class="list-unstyled col-md-6 col-xs-9">
+        <li *ngIf="add.ContactEmail"><label><i class="fa fa-envelope"></i> Email:</label> <a href="http://mailto:{{add.Email}}">{{add.ContactEmail}}</a></li>
+        <li *ngIf="add.ContactPhone && add.ContactPhone.trim()!=''"><label><i class="fa fa-phone"></i> Phone:</label><a href="tel:{{add.Phone}}">({{add.ContactPhone.substring(0,3)}})-{{add.ContactPhone.substring(3,6)}}-{{add.ContactPhone.substring(6,10)}}</a></li>
+        <li><label><i class="fa fa-calendar"></i> Date Posted: </label> {{add.DateCreated | date:'mediumDate'}}</li>
+      </ul>
+      <ul class="list-unstyled col-md-6 col-xs-3">
+        <div>
+          <button class="btn btn-warning btn-xs">Modify</button>
+          <button class="btn btn-danger btn-xs" (click)="deleteAdd(add)">Delete</button>
+        </div>
+      </ul>
+      <ul class="list-unstyled text-center clearBoth" *ngIf="add.Image">
+        <li><img class="img-responsive" src="{{add.Image}}" /></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<app-modal [modelPopup]="modal"></app-modal>

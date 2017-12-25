@@ -28,6 +28,18 @@ export class AddsService {
     return localStorage.getItem('access_token');
   }
 
+  getAddsByUserID(): Observable<Add[]> {
+    return this.http.get<Add[]>(AppSettings.apiUrl + '/api/adds/getAddsByUserId').pipe(
+      catchError(this.handleError<Add[]>('GetAddsByUserId'))
+    )
+  }
+
+  deleteAdd(add: Add) {
+    return this.http.post(AppSettings.apiUrl + '/api/adds/deleteAdd', add).pipe(
+      catchError(this.handleError<any>('deleteAdd'))
+    )
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

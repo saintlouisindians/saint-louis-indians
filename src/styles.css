@@ -2,6 +2,7 @@
 
 /*@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";*/
+@import '~animate.css';
 .btn-success{
     background-color: #00a680 !important;
     border-color:#00a680;
@@ -13,11 +14,13 @@ h3{
 }
 
 input.ng-dirty.ng-invalid, textarea.ng-dirty.ng-invalid{
-    border-left: solid 5px #a94442;
-    border-right: solid 5px #a94442;
+    border: solid 1px red;
 }
 
 input.ng-dirty.ng-valid, textarea.ng-dirty.ng-valid{
-    border-left: solid 5px green;
-    border-right: solid 5px green;
+    border: solid 1px green;
+}
+
+.text-danger{
+    color: red;
 }

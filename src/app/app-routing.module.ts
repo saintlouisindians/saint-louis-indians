@@ -11,6 +11,9 @@ import { LogoutComponent } from './profile/logout/logout.component';
 import { AddsComponent } from './adds/adds/adds.component';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { BusinessComponent } from './business/business/business.component';
+import { AddBusinessComponent } from './business/add-business/add-business.component';
+import { AddMovieComponent } from './movies/add-movie/add-movie.component';
+import { MoviesComponent } from './movies/movies/movies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -23,7 +26,10 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'adds/:id/:name', component: AddsComponent },
   { path: 'subcategories/:id/:name', component: SubcategoriesComponent },
-  { path: 'business/:id/:name', component: BusinessComponent }
+  { path: 'business/:id/:name', component: BusinessComponent },
+  { path: 'add-business', component: AddBusinessComponent, canActivate: [AuthGuard] },
+  { path: 'add-movie', component: AddMovieComponent, canActivate: [AuthGuard] },
+  { path: 'movies', component: MoviesComponent }
 ]
 
 @NgModule({

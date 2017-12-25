@@ -4,7 +4,7 @@
             <div class="col-sm-11">
                 <h2 style="margin:0px;"><span class="smallnav menu" (click)="openNav()">☰ Saint Louis Indians</span></h2>
                 <h1 class="text-center" style="margin:0px;"><span class="largenav">Saint Louis Indians </span></h1>
-                <h4 class="text-center"><small>Local Desi Community Portal</small></h4>
+                <h4 class="text-center"><small><em>Local Desi Community Portal</em></small></h4>
             </div>
 
         </div>
@@ -28,7 +28,7 @@
                         </ul>
                     </li>
                 </ng-container>
-                <li class="upper-links pull-right"><app-login-status></app-login-status></li>
+                <li class="upper-links pull-right"><app-login-status></app-login-status></li> 
                 <li class="upper-links dropdown pull-right">
                     <a class="links" href="#"><i class="fa fa-buysellads"></i> Adds <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
@@ -91,7 +91,7 @@
                                     <div class="panel-body">
                                         <ul class="list-unstyled">
                                             <ng-container *ngFor="let subcat of cat.BusinessSubCategories">
-                                                <li (click)="closeNav()"><a>{{subcat.Name}}</a></li>
+                                                <li (click)="closeNav()"><a routerLink="/business/{{subcat.ID}}/{{subcat.Name}}">{{subcat.Name}}</a></li>
                                             </ng-container>
                                         </ul>
                                     </div>

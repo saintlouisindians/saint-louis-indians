@@ -5,7 +5,8 @@ export class Business {
     address: Address;
     email: string;
     phone: string;
-    webLink:string;
+    webLink: string;
+    subCategoryID: number;
 }
 
 export class Address {

@@ -1,0 +1,46 @@
+
+@media screen and (max-width: 768px) {
+    .largenav {
+        display: block;
+    }
+    .smallnav{
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-height: 450px) {
+  .sidenav a {font-size: 18px;}
+}
+
+.smallnav{
+    border: solid 1px lightgray;
+    margin-top:55px;
+    ul{
+        li{
+            margin: 10px;
+            padding: 10px;
+            border-bottom: solid 1px #00a680;
+            a{
+                color: #00a680;
+
+                &:hover{
+                    text-decoration: none;                  
+                }
+            }
+
+            &:last-child{
+                border-bottom: none;
+            }
+
+            &:hover{
+                background-color: lightgray;
+            }
+        }
+    }
+}
+
+h4{
+    margin-top:0;
+}

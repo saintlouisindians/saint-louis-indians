@@ -1,23 +1,37 @@
-<h3>{{BusinessSubCategory}}</h3>
 
-<div *ngIf="businesses" class="col-md-8 col-md-offset-2 col-xs-12">
+
+<div *ngIf="businesses" class="col-md-9 col-xs-12">
+<h3>{{BusinessSubCategory}} <small class="pull-right"><a class="add-btn" routerLink="/add-business">Add Your Business</a></small></h3>
+
   <div class="panel panel-success" *ngFor="let bus of businesses">
-    <div class="panel-heading"><strong>{{bus.Name}}</strong><small> {{bus.Description}}</small>
-    <span class="pull-right badge">{{bus.WebLink}}</span>
+    <div class="panel-heading"><strong>{{bus.Name}}</strong>
     </div>
     <div class="panel-body">
-      <div class="col-md-4">
-        <i class="fa fa-envelope"></i><a href="http://mailto:{{bus.Email}}"> {{bus.Email}}</a>
-      </div>
-      <div class="col-md-4">
-        <i class="fa fa-phone"></i><a href="tel:{{bus.Phone}}"> {{bus.Phone}} </a>
-      </div>
-      <div class="col-md-4">
-        <ul class="list-unstyled" *ngIf=bus.Address>
-          <li>{{bus.Address.Address1}}</li>
-          <li *ngIf="bus.Address.Address2">{{bus.Address.Address2}}</li>
-          <li>{{bus.Address.State}} {{bus.Address.City}} {{bus.Address.ZipCode}}</li>        
-        </ul>
+      <div class="row">
+        <div class="col-md-5">
+          <img *ngIf="bus.Image" class="img-responsive" width="300px;" style="max-height:300px" src="{{bus.Image}}" />
+          <p *ngIf="!bus.Image" class="text-center"><em>{{bus.Description}}</em>
+            <p>
+        </div>
+        <div class="col-md-5 text-center pull-right">
+          <ul class="list-unstyled" *ngIf=bus.Address>
+            <li>{{bus.Address.Address1}}</li>
+            <li *ngIf="bus.Address.Address2">{{bus.Address.Address2}}</li>
+            <li>{{bus.Address.State}} {{bus.Address.City}} {{bus.Address.ZipCode}}</li>
+            <li><a href="http://mailto:{{bus.Email}}"><i class="fa fa-envelope"></i> {{bus.Email}}</a>
+            </li>
+            <li *ngIf="bus.Phone">
+              <a href="tel:{{bus.Phone}}">({{bus.Phone.substring(0,3)}})-{{bus.Phone.substring(3,6)}}-{{bus.Phone.substring(6,10)}}</a>
+            </li>
+            <li>
+              <a href="{{bus.WebLink}}">{{bus.WebLink}}</a>
+            </li>
+          </ul>
+          <ul class="list-unstyled">
+            <p *ngIf="bus.Image" class="text-center"><em>{{bus.Description}}</em>
+              <p>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

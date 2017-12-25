@@ -1,0 +1,65 @@
+<div class="col-md-6">
+  <h3>Add Movie</h3>
+  <form [formGroup]="addForm">
+    <div class="form-group">
+      <input type="text" formControlName="language" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-5 col-xs-12">
+          <label>Releaseing on</label>
+          <ng-datepicker formControlName="releaseDate"></ng-datepicker>
+        </div>
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-5 col-xs-12">
+          <label>Ending on</label>
+          <ng-datepicker formControlName="lastDate"></ng-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="name" class="form-control" placeholder="Movie Title" />
+    </div>
+
+    <div class="form-group">
+      <textarea type="text" formControlName="description" class="form-control" placeholder="Description/Synopsis"></textarea>
+      <div class="text-danger" *ngIf="addForm.get('description').value.length>500">
+        <em>cannot exceed 500 characters</em>
+      </div>
+      <div class="pull-right" *ngIf="addForm.get('description').value.length<=500">
+        <em class="text-success"><strong>{{500-addForm.get('description').value.length}} </strong></em>Characters Remaining..
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="text" formControlName="director" class="form-control" placeholder="Director" />
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="producer" class="form-control" placeholder="Producer" />
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="musicDirector" class="form-control" placeholder="Music Director" />
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="cast" class="form-control" placeholder="Cast" />
+      <div>
+        <em>enter comma separated names</em>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Upload image <small> <em>(optional)</em></small></label>
+      <input class="form-control" type="file" name="image" formControlName="image" imageUpload (imageSelected)="selected($event)"
+        [resizeOptions]="resizeOptions" />
+    </div>
+
+
+    <div class="form-group">
+      <button class="btn btn-success form-control" (click)="onSubmit()">Submit</button>
+    </div>
+  </form>
+</div>
+
+<app-modal [modelPopup]="modal"></app-modal>

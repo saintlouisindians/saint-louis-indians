@@ -1,0 +1,103 @@
+<div class="col-md-9 col-xs-12">
+  <h3>Add Business</h3>
+  <form [formGroup]="addBusinessForm">
+    <div class="form-group">
+      <select class="form-control" formControlName="subCategoryID">
+        <option *ngFor="let subCat of businessSubCategories" value="{{subCat.ID}}">{{subCat.Name}}</option>
+    </select>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="name" class="form-control" placeholder="Name*" />
+      <div *ngIf="addBusinessForm.get('name').dirty && addBusinessForm.get('name').value==''" class="text-danger">
+        <em> Required. </em>
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="email" formControlName="email" class="form-control" placeholder="Email*" />
+      <div *ngIf="addBusinessForm.get('email').dirty && addBusinessForm.get('email').value==''" class="text-danger">
+        <em> Required. </em>
+      </div>
+      <div class="text-danger" *ngIf="addBusinessForm.get('email').dirty && addBusinessForm.get('email').status!='VALID' && addBusinessForm.get('email').value!=''">
+        Please enter a valid email!
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="phone" formControlName="phone" class="form-control" placeholder="Phone*" />
+      <div *ngIf="addBusinessForm.get('phone').dirty && addBusinessForm.get('phone').value==''" class="text-danger">
+        <em> Required. </em>
+      </div>
+      <div class="text-danger" *ngIf="addBusinessForm.get('phone').dirty && addBusinessForm.get('phone').status!='VALID' && addBusinessForm.get('phone').value!=''">
+        Please enter a valid phone number!
+      </div>
+    </div>
+    <div class="form-group">
+      <textarea type="text" formControlName="description" class="form-control" placeholder="Description"></textarea>
+      <div class="text-danger" *ngIf="addBusinessForm.get('description').value.length>500">
+        <em>cannot exceed 500 characters</em>
+      </div>
+      <div class="pull-right" *ngIf="addBusinessForm.get('description').value.length<=500">
+        <em class="text-success"><strong>{{500-addBusinessForm.get('description').value.length}} </strong></em>Characters
+        Remaining..
+      </div>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="webLink" class="form-control" placeholder="Web Link" />
+      <div class="text-danger" *ngIf="addBusinessForm.get('webLink').value.length>50">
+        <em> Cannot exceed 50 characters.</em>
+      </div>
+    </div>
+    <div class="form-group" formGroupName="address">
+      <h4 class="text-primary">Address</h4>
+      <div class="form-group" style="overflow: auto">
+        <div class="col-md-6 form-group">
+          <input type="text" placeholder="Address1" formControlName="address1" class="form-control" />
+          <div class="text-danger" *ngIf="addBusinessForm.controls['address'] && addBusinessForm.controls['address'].get('address1')  && addBusinessForm.controls['address'].get('address1').dirty && !addBusinessForm.controls['address'].get('address1').value">
+            <em> Required.</em>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <input type="text" placeholder="Addres2" formControlName="address2" class="form-control" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-6 form-group">
+          <input type="text" placeholder="State" formControlName="state" class="form-control" />
+          <div class="text-danger" *ngIf="addBusinessForm.controls['address'] && addBusinessForm.controls['address'].get('state')  && addBusinessForm.controls['address'].get('state').dirty && !addBusinessForm.controls['address'].get('state').value">
+            <em> Required.</em>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+          <input type="text" placeholder="City" formControlName="city" class="form-control" />
+          <div class="text-danger" *ngIf="addBusinessForm.controls['address'] && addBusinessForm.controls['address'].get('city')  && addBusinessForm.controls['address'].get('city').dirty && !addBusinessForm.controls['address'].get('city').value">
+            <em> Required.</em>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" style="clear:both">
+        <div class="col-md-6 form-group">
+          <input type="text" placeholder="Zip Code" formControlName="zipCode" class="form-control" />
+          <div class="text-danger" *ngIf="addBusinessForm.controls['address'] && addBusinessForm.controls['address'].get('zipCode')  && addBusinessForm.controls['address'].get('zipCode').dirty && !addBusinessForm.controls['address'].get('zipCode').value">
+            <em> Required.</em>
+          </div>
+          <div class="text-danger" *ngIf="addBusinessForm.controls['address'] && addBusinessForm.controls['address'].get('zipCode')  && addBusinessForm.controls['address'].get('zipCode').dirty && addBusinessForm.controls['address'].get('zipCode').value && addBusinessForm.controls['address'].get('zipCode').status!='VALID'">
+            <em> Invalid zip.</em>
+          </div>
+        </div>
+        <div class="col-md-6 form-group">
+
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group" style="clear:both">
+      <label>Upload image <small> <em>(optional)</em></small></label>
+      <input class="form-control" type="file" name="image" formControlName="image" imageUpload (imageSelected)="selected($event)"
+        [resizeOptions]="resizeOptions" />
+    </div>
+    <div class="form-group">
+      <button type="button" (click)="onSubmit()" [disabled]="!addBusinessForm.valid" class="btn btn-success form-control">Submit</button>
+    </div>
+  </form>
+</div>
+
+<app-modal [modelPopup]="modal"></app-modal>
