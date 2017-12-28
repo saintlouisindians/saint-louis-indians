@@ -24,3 +24,14 @@ input.ng-dirty.ng-valid, textarea.ng-dirty.ng-valid{
 .text-danger{
     color: red;
 }
+.panel{
+    border-left: none;
+    border-right: none;
+    background: aliceblue;
+}
+
+
+.panel-success .panel-heading{
+    background: none;
+    border-bottom: none;
+}

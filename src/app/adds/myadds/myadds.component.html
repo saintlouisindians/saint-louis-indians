@@ -20,7 +20,7 @@
       </ul>
       <ul class="list-unstyled col-md-6 col-xs-3">
         <div>
-          <button class="btn btn-warning btn-xs">Modify</button>
+          <button class="btn btn-warning btn-xs" (click)="onModifyAddClick(add)">Modify</button>
           <button class="btn btn-danger btn-xs" (click)="deleteAdd(add)">Delete</button>
         </div>
       </ul>
@@ -33,3 +33,4 @@
 
 
 <app-modal [modelPopup]="modal"></app-modal>
+<app-modify-add [add]=selectedAdd></app-modify-add>

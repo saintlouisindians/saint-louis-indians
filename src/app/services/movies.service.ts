@@ -18,8 +18,8 @@ export class MoviesService {
     )
   }
 
-  getMovies(startDate: Date, endDate: Date) {
-   return this.http.get(AppSettings.apiUrl + '/api/movies/get?startDate=' + startDate.toISOString().slice(0,10) + '&endDate=' + endDate.toISOString().slice(0,10)).pipe(
+  getMovies(startDate: Date, endDate: Date): Observable<Movie[]> {
+    return this.http.get<Movie[]>(AppSettings.apiUrl + '/api/movies/get?startDate=' + startDate.toISOString().slice(0, 10) + '&endDate=' + endDate.toISOString().slice(0, 10)).pipe(
       catchError(this.handleError<any>('getMovies'))
     )
   }

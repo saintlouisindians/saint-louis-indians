@@ -1,3 +1,31 @@
-<p>
-  movies works!
-</p>
+<div class="col-md-9">
+  <h3>Movies</h3>
+  <div class="panel" *ngFor="let movie of movies">
+    <div class="panel-body">
+      <div class="col-md-8">
+        <img src="{{movie.Image}}" style="width:100%" />
+      </div>
+      <div class="col-md-4">
+        <ul class="list-unstyled">
+          <li>
+            <h3>{{movie.Name}}</h3>
+          </li>
+          <p>
+            <strong>Synopsis: </strong>
+            <em>{{movie.Description}}</em>
+          </p>
+        </ul>
+        <ul class="list-unstyled">
+
+          <li><label>Directed By:</label> {{movie.Director}}</li>
+          <li><label>Cast:</label> {{movie.Cast}}</li>
+          <li><label>Producer:</label> {{movie.Producer}}</li>
+          <li><label>Music By:</label> {{movie.MusicDirector}}</li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal [modelPopup]="modal"></app-modal>

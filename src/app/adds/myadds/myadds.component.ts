@@ -14,6 +14,7 @@ export class MyaddsComponent implements OnInit {
   adds: Add[];
   animationClass: string[] = [];
   modal: ModalPopUp;
+  selectedAdd: Add;
   constructor(private addsSvc: AddsService) { }
 
   ngOnInit() {
@@ -45,6 +46,10 @@ export class MyaddsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  onModifyAddClick(add: Add) {
+    this.selectedAdd = add;
   }
 
 }

@@ -16,7 +16,7 @@ export class ModalComponent implements OnInit {
 
   closeModal() {
     if (this.modelPopup.returnUrl) {
-      this.router.navigate(['login']);
+      this.router.navigate([this.modelPopup.returnUrl]);
     }
     this.modelPopup.operation = 'close';
   }

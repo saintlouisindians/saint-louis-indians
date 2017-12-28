@@ -8,12 +8,12 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-5 col-xs-6">
           <img *ngIf="bus.Image" class="img-responsive" width="300px;" style="max-height:300px" src="{{bus.Image}}" />
           <p *ngIf="!bus.Image" class="text-center"><em>{{bus.Description}}</em>
             <p>
         </div>
-        <div class="col-md-5 text-center pull-right">
+        <div class="col-md-5 text-center pull-right col-xs-6">
           <ul class="list-unstyled" *ngIf=bus.Address>
             <li>{{bus.Address.Address1}}</li>
             <li *ngIf="bus.Address.Address2">{{bus.Address.Address2}}</li>

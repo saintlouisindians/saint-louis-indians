@@ -3,4 +3,5 @@ export class ModalPopUp {
     operation: string;
     message: string;
     returnUrl?: string;
+    redirect?:boolean;
 }

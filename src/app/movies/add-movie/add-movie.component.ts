@@ -22,7 +22,7 @@ export class AddMovieComponent implements OnInit {
     this.addForm = this.fb.group({
       name: new FormControl(),
       description: new FormControl(''),
-      language: new FormControl('Telugu'),
+      language: new FormControl(''),
       director: new FormControl(),
       producer: new FormControl(),
       musicDirector: new FormControl(),

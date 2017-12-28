@@ -36,6 +36,8 @@ import { BusinessService } from './services/business.service';
 import { QuickLinksComponent } from './quick-links/quick-links.component';
 import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 import { MoviesComponent } from './movies/movies/movies.component';
+import { FooterComponent } from './footer/footer.component';
+import { ModifyAddComponent } from './adds/modify-add/modify-add.component';
 
 
 
@@ -60,7 +62,9 @@ import { MoviesComponent } from './movies/movies/movies.component';
     AddBusinessComponent,
     QuickLinksComponent,
     AddMovieComponent,
-    MoviesComponent
+    MoviesComponent,
+    FooterComponent,
+    ModifyAddComponent
   ],
   imports: [
     BrowserModule,

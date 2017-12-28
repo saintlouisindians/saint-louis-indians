@@ -10,8 +10,11 @@
         </div>
         <div class="row row1" *ngIf="navigationData">
             <ul class="largenav">
+                <li class="upper-links">
+                    <a class="links" routerLink="/home">Home</a>
+                </li>
                 <ng-container *ngFor="let cat of navigationData.Categories">
-                    <li class="upper-links dropdown"><a class="links" routerLink="/subcategories/{{cat.ID}}/{{cat.Name}}" >{{cat.Name}} <i class="fa fa-angle-down"></i></a>
+                    <li class="upper-links dropdown"><a class="links" routerLink="/subcategories/{{cat.ID}}/{{cat.Name}}">{{cat.Name}} <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
                             <ng-container *ngFor="let subcat of cat.SubCategories">
                                 <li class="profile-li"><a class="profile-links" routerLink="/adds/{{subcat.ID}}/{{subcat.Name}}">{{subcat.Name}}</a></li>
@@ -19,6 +22,9 @@
                         </ul>
                     </li>
                 </ng-container>
+                <li class="upper-links">
+                    <a class="links" routerLink="/movies">Movies</a>
+                </li>
                 <ng-container *ngFor="let cat of navigationData.BusinessCategories">
                     <li class="upper-links dropdown"><a class="links" href="#">{{cat.Name}} <i class="fa fa-angle-down"></i></a>
                         <ul class="dropdown-menu">
@@ -28,12 +34,14 @@
                         </ul>
                     </li>
                 </ng-container>
-                <li class="upper-links pull-right"><app-login-status></app-login-status></li> 
+                <li class="upper-links pull-right">
+                    <app-login-status></app-login-status>
+                </li>
                 <li class="upper-links dropdown pull-right">
                     <a class="links" href="#"><i class="fa fa-buysellads"></i> Adds <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li class="profile-li"><a class="profile-links" routerLink="myadds" >Manage My Adds</a></li>
-                        <li class="profile-li"><a class="profile-links" routerLink="postadd" >Post A New Add</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="myadds">Manage My Adds</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="postadd">Post A New Add</a></li>
                     </ul>
                 </li>
             </ul>
@@ -42,11 +50,28 @@
 </div>
 <div [style.width]="navWidth" id="mySidenav" class="sidenav">
     <div class="container smallNavHeader" style="padding-top: 10px;" (click)="closeNav()">
-       <a routerLink="home"> <span class="sidenav-heading">Home</span></a>
+        <a routerLink="home"> <span class="sidenav-heading">Home</span></a>
         <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
         <app-login-status></app-login-status>
     </div>
     <div class="panel-group overlay-content" id="accordion" *ngIf="navigationData">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseMovies">
+                    <i class="fa fa-movie"></i> Movies
+                </a>
+                </h4>
+            </div>
+            <div id="collapseMovies" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul class="list-unstyled">
+                        <li (click)="closeNav()"><a routerLink="movies">Movies</a></li>
+                        <li (click)="closeNav()"><a routerLink="add-movie">Add Movie</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -136,7 +161,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 
