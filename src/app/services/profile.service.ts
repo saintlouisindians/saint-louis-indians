@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { RegisterModel } from '../models/register.model';
 import { ConfirmEmailModel } from '../models/confirm-email.model';
 import { LoginModel } from '../models/login.model';
+import { User } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { _throw } from 'rxjs/observable/throw';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
-import { AppSettings} from '../utility/app-settings';
+import { AppSettings } from '../utility/app-settings';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'ContentType': 'application/json; charset=utf-8' })
@@ -18,8 +19,8 @@ const httpOptions = {
 export class ProfileService {
 
   //private stlIndiansApiUrl = 'http://stiapi-test.us-west-2.elasticbeanstalk.com';
- //private stlIndiansApiUrl='http://localhost:56711'; 
- loginStatus: boolean = false;
+  //private stlIndiansApiUrl='http://localhost:56711'; 
+  loginStatus: boolean = false;
   constructor(private http: HttpClient) { }
 
   registerUser(registerModel: RegisterModel): Observable<any> {
@@ -46,6 +47,12 @@ export class ProfileService {
   getLoginStatus(): boolean {
     if (sessionStorage && sessionStorage.getItem('access_token')) return true;
     else return false;
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(AppSettings.apiUrl+'/api/account/getusers', AppSettings.httpOptions).pipe(
+      catchError(this.handleError<any>('getUsers'))
+    )
   }
 
   updateLoginStatus(status: boolean): void {

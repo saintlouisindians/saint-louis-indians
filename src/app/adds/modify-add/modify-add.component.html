@@ -1,45 +1,55 @@
-<div *ngIf="add" id="loading">
-  <div  class="col-md-5 col-xs-11">
+<div *ngIf="add && showModal" id="loading">
+  <div class="col-md-6 col-xs-11">
     <div>
       <i class="fa fa-window-close-o text-success pull-right" (click)="closeModal()"></i>
     </div>
-    
-    <div class="col-md-9 col-xs-12">
-  <h3>Post Your Add</h3>
-  <form [formGroup]="modifyForm">
-    <div class="form-group">
-      <select class="form-control" formControlName="subCategoryID">
-        <option *ngFor="let subCat of subCategories" value="{{subCat.ID}}">{{subCat.Name}}</option>
+
+    <div class="col-xs-12">
+      <h3>Modify Add</h3>
+      <form [formGroup]="modifyForm">
+        <div class="form-group">
+          <select class="form-control" formControlName="subCategoryID">
+        <ng-container *ngFor="let subCat of subCategories">
+        <option value="{{subCat.ID}}">{{subCat.Name}}</option>
+        </ng-container>
     </select>
+        </div>
+        <div class="form-group">
+          <input type="text" formControlName="title" class="form-control" placeholder="Title*" />
+          <div *ngIf="modifyForm.get('title').dirty && modifyForm.get('title').value==''" class="text-danger">
+            Required.
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="email" formControlName="contactEmail" class="form-control" placeholder="Email*" />
+          <div *ngIf="modifyForm.get('contactEmail').dirty && modifyForm.get('contactEmail').value==''" class="text-danger">
+            Required.
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="phone" formControlName="contactPhone" class="form-control" placeholder="Phone(optional)" />
+        </div>
+        <div class="form-group">
+          <input type="phone" formControlName="price" class="form-control" placeholder="Price(optional)" />
+        </div>
+        <div class="form-group">
+          <textarea formControlName="description" class="form-control" placeholder="Description*"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="pull-left">Image</label>
+          <div class="col-md-2">
+            <img *ngIf="src" style="margin:auto; width:50px" class="img-responsive" src="{{src}}" />
+          </div>
+          <div class="col-md-1" *ngIf="src">
+            <i *ngIf="src" class="fa fa-times text-danger" style="cursor:pointer; border:solid 1px red; border-radius:60%" (click)="onImgCloseClick()"></i>
+          </div>
+          <div class="col-md-3">
+            <input class="input-sm" style="width:100px" name="image" type="file" formControlName="image" imageUpload (imageSelected)="selected($event)"
+              [resizeOptions]="resizeOptions" />
+          </div>
+        </div>
+        <div class="form-group" style="clear:both">
+          <button type="button" (click)="onSubmit()" [disabled]="!modifyForm.valid" class="btn btn-success form-control">Submit</button>
+        </div>
+      </form>
     </div>
-    <div class="form-group">
-      <input type="text" formControlName="title" class="form-control" placeholder="Title*" />
-      <div *ngIf="modifyForm.get('title').dirty && modifyForm.get('title').value==''" class="text-danger">
-        Required.
-      </div>
-    </div>
-    <div class="form-group">
-      <input type="email" formControlName="contactEmail" class="form-control" placeholder="Email*" />
-      <div *ngIf="modifyForm.get('contactEmail').dirty && modifyForm.get('contactEmail').value==''" class="text-danger">
-        Required.
-      </div>
-    </div>
-    <div class="form-group">
-      <input type="phone" formControlName="contactPhone" class="form-control" placeholder="Phone(optional)" />
-    </div>
-    <div class="form-group">
-      <input type="phone" formControlName="price" class="form-control" placeholder="Price(optional)" />
-    </div>
-    <div class="form-group">
-      <textarea type="text" formControlName="description" class="form-control" placeholder="Description*"></textarea>
-    </div>
-    <div class="form-group">
-      <label>Upload image <small> (optional)</small></label>
-      <input class="form-control" type="file" name="Image" formControlName="image" imageUpload (imageSelected)="selected($event)"
-        [resizeOptions]="resizeOptions" />
-    </div>
-    <div class="form-group">
-      <button type="button" (click)="onSubmit()" [disabled]="!modifyForm.valid" class="btn btn-success form-control">Submit</button>
-    </div>
-  </form>
-</div>

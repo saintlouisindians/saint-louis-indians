@@ -14,6 +14,8 @@ import { BusinessComponent } from './business/business/business.component';
 import { AddBusinessComponent } from './business/add-business/add-business.component';
 import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 import { MoviesComponent } from './movies/movies/movies.component';
+import { ErrorComponent } from './error/error.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,8 +30,10 @@ const routes: Routes = [
   { path: 'subcategories/:id/:name', component: SubcategoriesComponent },
   { path: 'business/:id/:name', component: BusinessComponent },
   { path: 'add-business', component: AddBusinessComponent, canActivate: [AuthGuard] },
-  { path: 'add-movie', component: AddMovieComponent, canActivate: [AuthGuard] },
-  { path: 'movies', component: MoviesComponent }
+  { path: 'add-movie', component: AddMovieComponent, canActivate: [AuthGuard], data: { roles: ['Admin', 'Movie_Distributer'] } },
+  { path: 'movies', component: MoviesComponent },
+  { path: 'error/:code', component: ErrorComponent },
+  {path: 'manage-users', component: ManageUsersComponent }
 ]
 
 @NgModule({

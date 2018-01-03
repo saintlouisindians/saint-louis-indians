@@ -38,6 +38,9 @@ import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 import { MoviesComponent } from './movies/movies/movies.component';
 import { FooterComponent } from './footer/footer.component';
 import { ModifyAddComponent } from './adds/modify-add/modify-add.component';
+import { ErrorComponent } from './error/error.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
 
 
 
@@ -64,7 +67,10 @@ import { ModifyAddComponent } from './adds/modify-add/modify-add.component';
     AddMovieComponent,
     MoviesComponent,
     FooterComponent,
-    ModifyAddComponent
+    ModifyAddComponent,
+    ErrorComponent,
+    ContactUsComponent,
+    ManageUsersComponent
   ],
   imports: [
     BrowserModule,

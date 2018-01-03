@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { Add } from '../../models/add.model';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { AddsService } from '../../services/adds.service'
+import { AddsService } from '../../services/adds.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modify-add',
@@ -12,27 +13,41 @@ import { AddsService } from '../../services/adds.service'
 export class ModifyAddComponent implements OnInit, OnChanges {
   modifyForm: FormGroup;
   @Input() add: any;
-  constructor(private fb: FormBuilder, private addsSvc: AddsService) {
+  @Input() changed: boolean;
+  showModal: boolean;
+  src: string;
+  showImgEdit: boolean;
+  refreshAdds: boolean;
+
+  @Output() addUpdated = new EventEmitter<boolean>();
+  constructor(private fb: FormBuilder, private addsSvc: AddsService, private router: Router) {
 
   }
   subCategories: any[] = [];
 
   ngOnInit() {
-        this.getSubCategories();
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
+
+    if (this.subCategories || this.subCategories.length === 0) {
+      this.getSubCategories();
+    }
     if (this.add) {
-      // this.add = changes.add.currentValue;
+      this.src = this.add.Image;
+      this.showModal = true;
       this.modifyForm = this.fb.group({
+        id: new FormControl(this.add.ID),
         title: new FormControl(this.add.Title, [Validators.required, Validators.maxLength(50)]),
         description: new FormControl(this.add.Description, [Validators.required, Validators.maxLength(500)]),
-        image: new FormControl(this.add.Image),
-        price: new FormControl(this.add.Price),
+        image: new FormControl(),
+        price: new FormControl(this.add.Price == 0 ? '' : this.add.Price),
         subCategoryID: new FormControl(this.add.SubCategoryID),
         contactPhone: new FormControl(this.add.ContactPhone, [Validators.maxLength(10), Validators.pattern('[1-9]{1}[0-9]{9}')]),
         contactEmail: new FormControl(this.add.ContactEmail, [Validators.email, Validators.required])
       });
+
     }
   }
 
@@ -42,12 +57,15 @@ export class ModifyAddComponent implements OnInit, OnChanges {
   };
 
   selected(imageResult: ImageResult) {
-    this.modifyForm.value.image = imageResult.resized
+    this.src = imageResult.resized
       && imageResult.resized.dataURL
       || imageResult.dataURL;
+
+    this.modifyForm.value.image = this.src;
   }
 
   getSubCategories() {
+    this.subCategories = [];
     var categories = JSON.parse(localStorage.getItem('navigationData')).Categories;
     categories[0].SubCategories.forEach(element => {
       this.subCategories.push({ Name: element.Name, ID: element.ID })
@@ -55,6 +73,24 @@ export class ModifyAddComponent implements OnInit, OnChanges {
   }
 
   closeModal() {
-    this.add = null
+    this.showModal = false;
+  }
+  onSubmit() {
+    this.addsSvc.updateAdd(this.modifyForm.value).subscribe(
+      (resp) => {
+        this.closeModal();
+        this.refreshAdds = true;
+        this.addUpdated.emit(true)
+      }
+    );
+  }
+
+  onEditImgClick() {
+    this.showImgEdit = true;
+  }
+
+  onImgCloseClick() {
+    this.src = null;
+    this.modifyForm.value.image = null;
   }
 }

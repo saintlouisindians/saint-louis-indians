@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, SimpleChanges, OnChanges, SimpleChange } from '@angular/core';
 import { AddsService } from '../../services/adds.service';
 import { Add } from '../../models/add.model';
 import { ModalPopUp } from '../../models/modalPopUp';
@@ -9,12 +9,14 @@ import { ModalPopUp } from '../../models/modalPopUp';
   templateUrl: './myadds.component.html',
   styleUrls: ['./myadds.component.less']
 })
-export class MyaddsComponent implements OnInit {
+export class MyaddsComponent implements OnInit, OnChanges {
 
   adds: Add[];
   animationClass: string[] = [];
   modal: ModalPopUp;
   selectedAdd: Add;
+  changed: boolean;
+  @Output() refreshAdds: boolean;
   constructor(private addsSvc: AddsService) { }
 
   ngOnInit() {
@@ -49,7 +51,12 @@ export class MyaddsComponent implements OnInit {
   }
 
   onModifyAddClick(add: Add) {
+    this.changed ? this.changed = false : this.changed = true;
     this.selectedAdd = add;
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    debugger;
+    console.log(this.refreshAdds);
+  }
 }

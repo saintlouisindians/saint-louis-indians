@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.profileSvc.login(this.loginModel).subscribe(
       (res) => {
         sessionStorage.setItem('access_token', res.access_token);
+        sessionStorage.setItem('role',res.Role);
         this.router.navigate([this.returnUrl]);
       },
       (error) => {

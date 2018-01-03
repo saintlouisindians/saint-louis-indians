@@ -1,0 +1,28 @@
+<div class="col-md-9 col-sm-9">
+  <h3>Manage Users</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <th>User</th>
+        <th>Role</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            {{user.Email}}
+          </td>
+          <td>
+            <div *ngFor="let role of availableRoles">
+            <label>{{role}}</label> 
+            <input type="checkbox" [checked]="contains(user.Roles,role)" />
+            </div>
+          </td>
+          <td>
+            <button class="btn-sm btn-success">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

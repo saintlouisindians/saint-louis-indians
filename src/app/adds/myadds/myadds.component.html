@@ -1,9 +1,7 @@
+<div class="col-md-9 col-xs-12 col-sm-9">
+  <h3>My Adds</h3>
 
-
-<div class="col-md-9 col-xs-12">
-<h3>My Adds <small><a class="add-btn pull-right" routerLink="/postadd">Post an Add</a></small></h3>
-
-  <div class="panel panel-success animated"  *ngFor="let add of adds" [ngClass]="animationClass[add.ID]">
+  <div class="panel panel-success animated" *ngFor="let add of adds" [ngClass]="animationClass[add.ID]">
     <div class="panel-heading">
       <strong>{{add.Title}}</strong>
       <small *ngIf="add.Price>0" class="pull-right text-primary badge">$ <em>{{add.Price}}</em></small>
@@ -33,4 +31,4 @@
 
 
 <app-modal [modelPopup]="modal"></app-modal>
-<app-modify-add [add]=selectedAdd></app-modify-add>
+<app-modify-add [add]="selectedAdd" [changed]="changed" (addUpdated)=getMyAdds()></app-modify-add>

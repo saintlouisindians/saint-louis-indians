@@ -40,6 +40,11 @@ export class AddsService {
     )
   }
 
+  updateAdd(add: Add) {
+    return this.http.post(AppSettings.apiUrl + '/api/adds/UpdateAdd', add).pipe(
+      catchError(this.handleError<any>('updateAdd'))
+    )
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
