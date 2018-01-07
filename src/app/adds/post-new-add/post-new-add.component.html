@@ -1,4 +1,4 @@
-<div class="col-md-9 col-xs-12 col-sm-9">
+<div class="col-md-7 col-xs-12 col-sm-6">
   <h3>Post Your Add</h3>
   <form [formGroup]="addForm">
     <div class="form-group">
@@ -26,15 +26,25 @@
     </div>
     <div class="form-group">
       <textarea type="text" formControlName="description" class="form-control" placeholder="Description*"></textarea>
-          <div *ngIf="addForm.get('description').dirty && addForm.get('description').value==''" class="text-danger">
+      <div *ngIf="addForm.get('description').dirty && addForm.get('description').value==''" class="text-danger">
         Required.
       </div>
     </div>
     <div class="form-group">
       <label>Upload image <small> (optional)</small></label>
-      <input class="form-control" type="file" name="Image" formControlName="image" imageUpload (imageSelected)="selected($event)"
-        [resizeOptions]="resizeOptions" />
+      <input class="form-control" type="file" name="Image" imageUpload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions"
+      />
     </div>
+
+    <div class="form-group" *ngIf="this.addForm && this.addForm.value">
+      <ng-container *ngFor="let image of this.addForm.value.images">
+        <div class="bordered col-md-1">
+          <i class="fa fa-window-close-o text-danger pull-right" (click)="removeImage(image)"></i>
+          <img src="{{image.image}}" style="width:60px; height:60px" />
+        </div>
+      </ng-container>
+    </div>
+
     <div class="form-group">
       <button type="button" (click)="onSubmit()" [disabled]="!addForm.valid" class="btn btn-success form-control">Submit</button>
     </div>

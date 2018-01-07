@@ -1,7 +1,5 @@
-
-
-<div *ngIf="businesses" class="col-md-9 col-xs-12 col-sm-9">
-<h3>{{BusinessSubCategory}} <small class="pull-right"><a class="add-btn" routerLink="/add-business">Add Your Business</a></small></h3>
+<div *ngIf="businesses" class="col-md-7 col-xs-12 col-sm-6">
+  <h3>{{BusinessSubCategory}}</h3>
 
   <div class="panel panel-success" *ngFor="let bus of businesses">
     <div class="panel-heading"><strong>{{bus.Name}}</strong>
@@ -33,8 +31,16 @@
           </ul>
         </div>
       </div>
+      <div class="row" *ngIf="bus.Images && bus.Images.length>0">
+        <ng-container *ngFor="let image of bus.Images">
+          <div class="bordered col-md-1 col-sm-1 col-xs-2">
+            <img class="img-responsive" src="{{image.Image}}" style="width:60px; height:60px" (click)="onBusinessSelect(bus)" />
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>
 
 <app-modal [modelPopup]="modal"></app-modal>
+<app-business-details [business]="selectedBusiness" [changed]="changed"></app-business-details>

@@ -15,12 +15,14 @@ import { AddBusinessComponent } from './business/add-business/add-business.compo
 import { AddMovieComponent } from './movies/add-movie/add-movie.component';
 import { MoviesComponent } from './movies/movies/movies.component';
 import { ErrorComponent } from './error/error.component';
-import { ManageUsersComponent } from './manage-users/manage-users.component'
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { AddEventComponent } from './events/add-event/add-event.component';
+import { EventsComponent } from './events/events/events.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'movies', pathMatch: 'full' },
   { path: 'postadd', component: PostNewAddComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent },
+ // { path: 'home', component: HomeComponent },
   { path: 'myadds', component: MyaddsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -33,7 +35,9 @@ const routes: Routes = [
   { path: 'add-movie', component: AddMovieComponent, canActivate: [AuthGuard], data: { roles: ['Admin', 'Movie_Distributer'] } },
   { path: 'movies', component: MoviesComponent },
   { path: 'error/:code', component: ErrorComponent },
-  {path: 'manage-users', component: ManageUsersComponent }
+  { path: 'manage-users', component: ManageUsersComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'add-event', component: AddEventComponent },
+  { path: 'events', component: EventsComponent }
 ]
 
 @NgModule({

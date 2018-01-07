@@ -1,29 +1,37 @@
-<div class="pull-right">
-  <a routerLink="/postadd">Post an Add</a>
-</div>
 
+<div class="col-md-7 col-xs-12 col-sm-6" >
 <h3>{{subCategoryName}}</h3>
-
-<div class="col-md-9 col-xs-12 col-sm-9" *ngFor="let add of adds">
-
-  <div class="panel panel-success">
+  <div class="panel panel-success" *ngFor="let add of adds" (click)="onaddSelect(add)">
     <div class="panel-heading">
       <strong>{{add.Title}}</strong>
-      <small *ngIf="add.Price>0" class="pull-right text-primary badge">$ {{add.Price}}</small>
+      <span *ngIf="add.Price>0" class="pull-right text-primary badge" style="font-size:large"><em><i class="fa fa-money"></i> ${{add.Price}}</em></span>
     </div>
 
     <div class="panel-body">
       <ul class="list-unstyled">
-        <li>{{add.Description}}</li>
+        <li><em>{{add.Description}}</em> <strong> <button class="btn-link" (click)="onaddSelect(add)">View Images</button></strong></li>
+        <li *ngIf="add.Images && add.Images.length>0">
+          <ng-container *ngFor="let image of add.Images">
+            <div class="bordered col-md-1 col-sm-1 col-xs-2">
+              <img class="img-responsive" src="{{image.Image}}" style="width:60px; height:60px" />
+            </div>
+          </ng-container>
+        </li>
       </ul>
-      <ul class="list-unstyled text-center">
-        <li *ngIf="add.ContactEmail"><label><i class="fa fa-envelope"></i> Email:</label> <a href="http://mailto:{{add.Email}}">{{add.ContactEmail}}</a></li>
-        <li *ngIf="add.ContactPhone && add.ContactPhone.trim()!=''"><label><i class="fa fa-phone"></i> Phone:</label><a href="tel:{{add.Phone}}">({{add.ContactPhone.substring(0,3)}})-{{add.ContactPhone.substring(3,6)}}-{{add.ContactPhone.substring(6,10)}}</a></li>
-        <li><label><i class="fa fa-calendar"></i> Date Posted: </label> {{add.DateCreated | date:'mediumDate'}}</li>
+      <ul class="list-unstyled">
+        <li *ngIf="add.ContactEmail">
+          <div class="col-md-5 col-sm-5 col-xs-10">
+            <label><i class="fa fa-envelope"></i> Email:</label> <a href="http://mailto:{{add.Email}}">{{add.ContactEmail}}</a>
+          </div>
+          <div class="col-md-5 col-sm-5 col-xs-10">
+            <li *ngIf="add.ContactPhone && add.ContactPhone.trim()!=''"><label><i class="fa fa-phone"></i> Phone:</label><a href="tel:{{add.Phone}}">({{add.ContactPhone.substring(0,3)}})-{{add.ContactPhone.substring(3,6)}}-{{add.ContactPhone.substring(6,10)}}</a></li>
+          </div>
+        </li>
       </ul>
-      <ul class="list-unstyled text-center" *ngIf="add.Image">
-       <li><button class="btn btn-link" (click)="hideme[add.ID] = !hideme[add.ID]"><i class="fa fa-plus-square-o" [class.hidden]="hideme[add.ID]"> Show Image</i> <i class="fa fa-minus-square-o" [class.hidden]="!hideme[add.ID]"> Hide Image</i></button></li>
-        <li><img class="img-responsive" [class.hidden]="!hideme[add.ID]" src="{{add.Image}}" /></li>
+      <ul class="pull-right list-unstyled">
+        <li><label>Posted on:</label>
+          <u>{{add.DateCreated | date:'mediumDate'}}</u>
+        </li>
       </ul>
     </div>
   </div>
@@ -31,4 +39,4 @@
 
 
 <app-modal [modelPopup]="modal"></app-modal>
-
+<app-add-details [add]="selectedAdd" [changed]="changed"></app-add-details>

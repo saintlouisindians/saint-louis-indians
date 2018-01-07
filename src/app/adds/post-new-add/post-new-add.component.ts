@@ -22,11 +22,11 @@ export class PostNewAddComponent implements OnInit {
     this.addForm = this.fb.group({
       title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       description: new FormControl('', [Validators.required, Validators.maxLength(500)]),
-      image: new FormControl(this.src),
+      images: this.fb.array([]),
       price: new FormControl(),
       subCategoryID: new FormControl(1),
       contactPhone: new FormControl('', [Validators.maxLength(10), Validators.pattern('[1-9]{1}[0-9]{9}')]),
-      contactEmail: new FormControl('', [Validators.email,Validators.required])
+      contactEmail: new FormControl('', [Validators.email, Validators.required])
     });
   }
 
@@ -36,11 +36,13 @@ export class PostNewAddComponent implements OnInit {
   };
 
   selected(imageResult: ImageResult) {
-    this.src = imageResult.resized
+    this.addForm.value.images.push({
+      image: imageResult.resized
       && imageResult.resized.dataURL
-      || imageResult.dataURL;
+      || imageResult.dataURL
+    });
 
-    this.addForm.value.image = this.src;
+    //this.addForm.value.image = this.src;
   }
 
   getSubCategories() {
@@ -55,9 +57,13 @@ export class PostNewAddComponent implements OnInit {
     });
     this.modal.operation = 'close';
   }
+
+  removeImage(image) {
+    this.addForm.value.images = this.addForm.value.images.filter(item => item != image);
+  }
   onSubmit() {
     this.modal.operation = 'open';
-    if (this.addForm.valid) { 
+    if (this.addForm.valid) {
       this.createAdd();
     }
   }

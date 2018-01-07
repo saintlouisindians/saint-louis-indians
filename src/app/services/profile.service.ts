@@ -50,11 +50,16 @@ export class ProfileService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(AppSettings.apiUrl+'/api/account/getusers', AppSettings.httpOptions).pipe(
+    return this.http.get<User[]>(AppSettings.apiUrl + '/api/account/getusers', AppSettings.httpOptions).pipe(
       catchError(this.handleError<any>('getUsers'))
     )
   }
 
+  updateUser(user: User) {
+    return this.http.post(AppSettings.apiUrl + '/api/account/UpdateUser', user, AppSettings.httpOptions).pipe(
+      catchError(this.handleError<any>('updateUser'))
+    )
+  }
   updateLoginStatus(status: boolean): void {
     this.loginStatus = status;
   }

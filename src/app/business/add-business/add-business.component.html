@@ -1,4 +1,4 @@
-<div class="col-md-9 col-sm-9 col-xs-12">
+<div class="col-md-7 col-sm-6 col-xs-12">
   <h3>Add Business</h3>
   <form [formGroup]="addBusinessForm">
     <div class="form-group">
@@ -91,8 +91,16 @@
     </div>
     <div class="form-group" style="clear:both">
       <label>Upload image <small> <em>(optional)</em></small></label>
-      <input class="form-control" type="file" name="image" formControlName="image" imageUpload (imageSelected)="selected($event)"
+      <input class="form-control" type="file" name="image"  imageUpload (imageSelected)="selected($event)"
         [resizeOptions]="resizeOptions" />
+    </div>
+    <div class="form-group" *ngIf="this.addBusinessForm && this.addBusinessForm.value">
+      <ng-container *ngFor="let image of this.addBusinessForm.value.images">
+        <div class="bordered col-md-1">
+          <i class="fa fa-window-close-o text-danger pull-right" (click)="removeImage(image)"></i>
+          <img src="{{image.image}}" style="width:60px; height:60px" />
+        </div>
+      </ng-container>
     </div>
     <div class="form-group">
       <button type="button" (click)="onSubmit()" [disabled]="!addBusinessForm.valid" class="btn btn-success form-control">Submit</button>

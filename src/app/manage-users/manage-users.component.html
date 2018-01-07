@@ -1,4 +1,4 @@
-<div class="col-md-9 col-sm-9">
+<div class="col-md-7 col-sm-6">
   <h3>Manage Users</h3>
   <div class="table-responsive">
     <table class="table">
@@ -8,18 +8,18 @@
         <th>Action</th>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users; let i = index">
           <td>
             {{user.Email}}
           </td>
           <td>
             <div *ngFor="let role of availableRoles">
             <label>{{role}}</label> 
-            <input type="checkbox" [checked]="contains(user.Roles,role)" />
+            <input type="checkbox" data-id="" value="{{role}}" [checked]="contains(user.Roles,role)" (click)="onRoleSelected(user,i,$event)" />
             </div>
           </td>
           <td>
-            <button class="btn-sm btn-success">Update</button>
+            <button class="btn-sm btn-success" (click)="onUpdateClick(user)">Update</button>
           </td>
         </tr>
       </tbody>

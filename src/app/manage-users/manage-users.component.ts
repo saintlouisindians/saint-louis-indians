@@ -32,4 +32,17 @@ export class ManageUsersComponent implements OnInit {
     if (flag) return true; else return false;
   }
 
+  onRoleSelected(user, i, event) {
+    if (event.target.checked) {
+      this.users[i].Roles.push({ Name: event.target.value })
+    } else {
+      this.users[i].Roles = this.users[i].Roles.filter(n => n.Name != event.target.value)
+    }
+  }
+
+  onUpdateClick(user) {
+    this.profileSvc.updateUser(user).subscribe(
+      (resp) => console.log(resp)
+    )
+  }
 }

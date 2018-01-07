@@ -20,6 +20,16 @@ import { LogoutComponent } from './profile/logout/logout.component'
 import { AddsComponent } from './adds/adds/adds.component';
 import { BusinessComponent } from './business/business/business.component';
 import { AddBusinessComponent } from './business/add-business/add-business.component';
+import { QuickLinksComponent } from './quick-links/quick-links.component';
+import { AddMovieComponent } from './movies/add-movie/add-movie.component';
+import { MoviesComponent } from './movies/movies/movies.component';
+import { FooterComponent } from './footer/footer.component';
+import { ModifyAddComponent } from './adds/modify-add/modify-add.component';
+import { ErrorComponent } from './error/error.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { GreetingComponent } from './greeting/greeting.component';
+import { AddEventComponent } from './events/add-event/add-event.component';
 
 
 
@@ -33,14 +43,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './utility/TokenInterceptor';
 import { SubcategoriesComponent } from './subcategories/subcategories.component';
 import { BusinessService } from './services/business.service';
-import { QuickLinksComponent } from './quick-links/quick-links.component';
-import { AddMovieComponent } from './movies/add-movie/add-movie.component';
-import { MoviesComponent } from './movies/movies/movies.component';
-import { FooterComponent } from './footer/footer.component';
-import { ModifyAddComponent } from './adds/modify-add/modify-add.component';
-import { ErrorComponent } from './error/error.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { GreetingService } from './services/greeting.service';
+import { EventsService } from './services/events.service';
+import { AddDetailsComponent } from './adds/add-details/add-details.component';
+import { BusinessDetailsComponent } from './business/business-details/business-details.component';
+import { EventsComponent } from './events/events/events.component';
+import { RateMovieComponent } from './movies/rate-movie/rate-movie.component';
+
 
 
 
@@ -70,7 +79,13 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     ModifyAddComponent,
     ErrorComponent,
     ContactUsComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    GreetingComponent,
+    AddEventComponent,
+    AddDetailsComponent,
+    BusinessDetailsComponent,
+    EventsComponent,
+    RateMovieComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +95,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     HttpClientModule,
     ImageUploadModule, NgDatepickerModule
   ],
-  providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, MoviesService, {
+  providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, MoviesService, GreetingService,EventsService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true

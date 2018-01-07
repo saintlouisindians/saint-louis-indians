@@ -12,6 +12,7 @@ export class MoviesComponent implements OnInit {
 
   movies: Movie[];
   modal: ModalPopUp;
+  selectedMovie: any;
   constructor(private movieSvc: MoviesService) { }
 
   ngOnInit() {
@@ -30,5 +31,9 @@ export class MoviesComponent implements OnInit {
         this.modal.operation = 'close';
       }
     )
+  }
+
+  onReviewClick(movie) {
+    this.selectedMovie = movie;
   }
 }

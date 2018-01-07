@@ -1,9 +1,9 @@
-<div class="col-md-9">
-  <h3>Movies</h3>
+<div class="col-md-7 col-sm-6">
+  <h3>Now In Theaters</h3>
   <div class="panel" *ngFor="let movie of movies">
     <div class="panel-body">
       <div class="col-md-8">
-        <img src="{{movie.Image}}" style="width:100%" />
+        <img src="{{movie.Image}}" class="img-responsive" />
       </div>
       <div class="col-md-4">
         <ul class="list-unstyled">
@@ -16,16 +16,21 @@
           </p>
         </ul>
         <ul class="list-unstyled">
-
+          <li><label>Start Date:</label> {{movie.ReleaseDate | date:'mediumDate'}}</li>
+          <li><label>End Date:</label> {{movie.LastDate | date:'mediumDate'}}</li>
           <li><label>Directed By:</label> {{movie.Director}}</li>
           <li><label>Cast:</label> {{movie.Cast}}</li>
           <li><label>Producer:</label> {{movie.Producer}}</li>
           <li><label>Music By:</label> {{movie.MusicDirector}}</li>
         </ul>
-
+      </div>
+      <div>
+        <button class="link-button" (click)="onReviewClick(movie)">Rate this?</button>
       </div>
     </div>
+
   </div>
 </div>
 
 <app-modal [modelPopup]="modal"></app-modal>
+<app-rate-movie [movie]="selectedMovie"></app-rate-movie>

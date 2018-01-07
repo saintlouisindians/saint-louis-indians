@@ -14,6 +14,8 @@ export class BusinessComponent implements OnInit {
   BusinessSubCategory: string;
   businesses: Business[];
   modal: ModalPopUp;
+  selectedBusiness: any;
+  changed: boolean;
   constructor(private router: ActivatedRoute, private busSvc: BusinessService) { }
 
   ngOnInit() {
@@ -38,6 +40,11 @@ export class BusinessComponent implements OnInit {
         this.modal.operation = 'close';
       }
     )
+  }
+
+  onBusinessSelect(business) {
+    this.changed ? this.changed = false : this.changed = true;
+    this.selectedBusiness = business;
   }
 
 }

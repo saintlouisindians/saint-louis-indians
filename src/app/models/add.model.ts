@@ -6,5 +6,5 @@ export class Add {
     email: string;
     id: number;
     subCategoryID: number;
-    image:string;
+    images: any[];
 }

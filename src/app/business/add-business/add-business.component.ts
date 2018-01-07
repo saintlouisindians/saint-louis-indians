@@ -35,7 +35,7 @@ export class AddBusinessComponent implements OnInit {
       ),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.pattern('[1-9]{1}[0-9]{9}')]),
-      image: new FormControl(null),
+      images: this.fb.array([]),
       subCategoryID: new FormControl(1)
     })
   }
@@ -46,9 +46,11 @@ export class AddBusinessComponent implements OnInit {
   };
 
   selected(imageResult: ImageResult) {
-    this.addBusinessForm.value.image = imageResult.resized
+    this.addBusinessForm.value.images.push({
+      image: imageResult.resized
       && imageResult.resized.dataURL
-      || imageResult.dataURL;
+      || imageResult.dataURL
+    });
   }
   getBusSubCategories() {
     let categories = JSON.parse(localStorage.getItem('navigationData')).BusinessCategories;
@@ -59,6 +61,9 @@ export class AddBusinessComponent implements OnInit {
     });
   }
 
+  removeImage(image) {
+    this.addBusinessForm.value.images = this.addBusinessForm.value.images.filter(item => item != image);
+  }
   addBusiness() {
     if (this.addBusinessForm.valid) {
       this.modal = {

@@ -13,7 +13,8 @@ import { DatePipe } from '@angular/common';
 export class AddsComponent implements OnInit {
   adds: Add[];
   modal: ModalPopUp;
-
+  selectedAdd: any;
+  changed: boolean;
   constructor(private addsSvc: AddsService, private router: ActivatedRoute) {
     this.hideme = {};
   }
@@ -37,7 +38,10 @@ export class AddsComponent implements OnInit {
 
   }
 
-
+  onaddSelect(add) {
+    this.changed ? this.changed = false : this.changed = true;
+    this.selectedAdd = add;
+  }
   getAdds(id: number) {
     //var id = this.router.snapshot.paramMap.get('id');
     this.addsSvc.getAdds(id).subscribe(

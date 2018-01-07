@@ -6,4 +6,5 @@ export class User {
 export class Role {
     id: string;
     name: string;
+    selected:boolean;
 }
