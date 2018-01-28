@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { EventsService } from '../../services/events.service';
+import { ModalPopUp } from '../../models/modalPopUp';
 
 @Component({
   selector: 'app-add-event',
@@ -10,15 +11,16 @@ import { EventsService } from '../../services/events.service';
 })
 export class AddEventComponent implements OnInit {
   addForm: FormGroup;
+  modal: ModalPopUp;
   constructor(private fb: FormBuilder, private eventSvc: EventsService) { }
 
   ngOnInit() {
     this.addForm = this.fb.group({
-      title: new FormControl(),
-      eventType: new FormControl(),
-      description: new FormControl(),
-      startDate: new FormControl(),
-      endDate: new FormControl(),
+      title: new FormControl('', [Validators.required]),
+      eventType: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl('', [Validators.required]),
       images: this.fb.array([])
     })
   }
@@ -41,10 +43,18 @@ export class AddEventComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.addForm.value);
+    this.modal = {
+      operation: 'open',
+      type: 'loading',
+      message: 'successfully added'
+    }
     this.eventSvc.addEvent(this.addForm.value).subscribe(
       (resp) => {
-        console.log(resp)
+        this.modal.type = 'success';
+      },
+      (error) => {
+        this.modal.type = 'error';
+        this.modal.message = 'Something went wronf. Please try again';
       }
     )
   }

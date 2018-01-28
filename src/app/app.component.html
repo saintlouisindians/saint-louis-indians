@@ -1,16 +1,17 @@
-
-<navigation></navigation>
+<navigation>
+</navigation>
 <div class="container">
   <div class="row">
     <div class="col-md-2 col-sm-3">
       <app-quick-links></app-quick-links>
     </div>
-    <router-outlet></router-outlet>
+
+    <div class="col-md-7 col-sm-6 app-body">
+      <router-outlet></router-outlet>
+    </div>
     <div class="col-md-3 col-sm-3 col-xs-8 pull-right smallnav">
-      <app-events></app-events>
+      <app-events [hidden]="hideSideEvents"></app-events>
     </div>
   </div>
-
 </div>
-
 <app-footer></app-footer>

@@ -36,17 +36,17 @@
           <textarea formControlName="description" class="form-control" placeholder="Description*"></textarea>
         </div>
         <div class="form-group">
-          <label class="pull-left">Image</label>
-          <div class="col-md-2">
-            <img *ngIf="src" style="margin:auto; width:50px" class="img-responsive" src="{{src}}" />
-          </div>
-          <div class="col-md-1" *ngIf="src">
-            <i *ngIf="src" class="fa fa-times text-danger" style="cursor:pointer; border:solid 1px red; border-radius:60%" (click)="onImgCloseClick()"></i>
-          </div>
-          <div class="col-md-3">
-            <input class="input-sm" style="width:100px" name="image" type="file" formControlName="image" imageUpload (imageSelected)="selected($event)"
-              [resizeOptions]="resizeOptions" />
-          </div>
+          <label>Upload image <small> (optional)</small></label>
+          <input class="form-control" type="file" name="Image" imageUpload (imageSelected)="selected($event)" [resizeOptions]="resizeOptions"
+          />
+        </div>
+        <div class="form-group" *ngIf="this.add && this.add.Images">
+          <ng-container *ngFor="let image of this.add.Images">
+            <div class="bordered col-md-1">
+              <i class="fa fa-window-close-o text-danger pull-right" (click)="removeImage(image)"></i>
+              <img src="{{image.Image}}" style="width:60px; height:60px" />
+            </div>
+          </ng-container>
         </div>
         <div class="form-group" style="clear:both">
           <button type="button" (click)="onSubmit()" [disabled]="!modifyForm.valid" class="btn btn-success form-control">Submit</button>

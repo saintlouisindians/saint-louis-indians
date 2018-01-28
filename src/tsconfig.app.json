@@ -9,5 +9,7 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  
+  "include": [ "**/*", "../node_modules/ngx-inactivity/src/app/ngx-inactivity/index.ts" ]
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Movie } from '../../models/movie.model';
 import { ModalPopUp } from '../../models/modalPopUp';
@@ -6,13 +6,14 @@ import { ModalPopUp } from '../../models/modalPopUp';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
+  styleUrls: ['./movies.component.less']
 })
 export class MoviesComponent implements OnInit {
 
   movies: Movie[];
   modal: ModalPopUp;
   selectedMovie: any;
+  hideHeaderImg: boolean[]=[];
   constructor(private movieSvc: MoviesService) { }
 
   ngOnInit() {
@@ -35,5 +36,9 @@ export class MoviesComponent implements OnInit {
 
   onReviewClick(movie) {
     this.selectedMovie = movie;
+  }
+
+  toggleHeaderImg(i) {
+    this.hideHeaderImg[i] ? this.hideHeaderImg[i] = false : this.hideHeaderImg[i] = true;
   }
 }

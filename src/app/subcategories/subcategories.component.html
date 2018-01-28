@@ -1,5 +1,5 @@
 
-<div class="col-md-7 col-md-offset-1 col-xs-12 col-sm-6" *ngIf="subCategories">
+<div *ngIf="subCategories">
   <h3>{{categoryName}}</h3>
   <div class="panel panel-success col-md-3 col-sm-4 col-xs-10 col-xs-offset-1 text-center" *ngFor="let subcat of subCategories" routerLink="/adds/{{subcat.ID}}/{{subcat.Name}}">
     <div class="panel-body">

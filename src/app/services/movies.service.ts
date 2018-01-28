@@ -24,6 +24,11 @@ export class MoviesService {
     )
   }
 
+  addReview(review){
+    return this.http.post(AppSettings.apiUrl+'/api/movies/addReview',review).pipe(
+      catchError(this.handleError<any>('addReview'))
+    )
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

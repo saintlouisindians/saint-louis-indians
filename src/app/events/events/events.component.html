@@ -1,7 +1,30 @@
 <h3>Upcoming Events</h3>
-<div *ngIf="events">
-  <ul class="event-list">
-    <li *ngFor="let event of events">
+<div class="panel" *ngFor="let event of events; let i=index" id="accordion">
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a (click)="onEventSelect(event)">
+        <div class="row" click="onEventSelect(event)">
+          <div class="col-md-2 col-xs-2 col-sm-3 pad-top-25">
+            <ul class="list-unstyled">
+              <li class="day">{{getDay(event.StartDate | date:'mediumDate')}}</li>
+              <li class="month">{{event.StartDate | date:'LLL'}}</li>
+            </ul>
+          </div>
+          <div class="col-md-10 col-xs-10 col-sm-9 no-right-pad">
+            <img *ngIf="event.Images && event.Images.length>0" alt="{{event.Title}}" src="{{event.Images[0].Image}}" />
+          </div>
+        </div>
+        <div class="row pad-5 text-center">
+          <strong>{{event.Title}}</strong>
+        </div>
+      </a>
+    </h4>
+  </div>
+  <div class="panel-body collapse" id="collapseEvents{{i}}">
+    <div> <em>{{event.Title}} {{event.Description}}</em></div>
+  </div>
+  <ul class="event-list" style="display:none">
+    <li>
       <div class="col-md-3 col-sm-3 time">
         <ul class="list-unstyled">
           <li class="day">{{event.StartDate | date:'dd'}}</li>

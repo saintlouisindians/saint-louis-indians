@@ -9,7 +9,7 @@
 }
 
 h3{
-    color:#337ab7;
+    color:#003b64;
     text-align: center;
 }
 
@@ -25,9 +25,7 @@ input.ng-dirty.ng-valid, textarea.ng-dirty.ng-valid{
     color: red;
 }
 .panel{
-    border-left: none;
-    border-right: none;
-    background: aliceblue;
+    background:#fff;
 }
 
 
@@ -71,5 +69,25 @@ i{
         display: none;
     }
 
+}
+
+em{
+    font-family: Georgia;
+    color: #960;
+}
+
+body{
+    background-color: lavender;
+}
+
+.app-body{
+    border:solid 1px #fff;
+    margin-top:60px;
+}
+
+@media (min-width: 1400px){
+.container {
+    width: 1350px;
+}
 }
 

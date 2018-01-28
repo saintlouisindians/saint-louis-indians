@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageUploadModule } from 'ng2-imageupload';
 import { NgDatepickerModule } from 'ng2-datepicker';
 
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -30,9 +31,11 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { GreetingComponent } from './greeting/greeting.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
-
-
-
+import { AddDetailsComponent } from './adds/add-details/add-details.component';
+import { BusinessDetailsComponent } from './business/business-details/business-details.component';
+import { EventsComponent } from './events/events/events.component';
+import { RateMovieComponent } from './movies/rate-movie/rate-movie.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
 
 import { ProfileService } from './services/profile.service';
 import { MoviesService } from './services/movies.service';
@@ -45,15 +48,6 @@ import { SubcategoriesComponent } from './subcategories/subcategories.component'
 import { BusinessService } from './services/business.service';
 import { GreetingService } from './services/greeting.service';
 import { EventsService } from './services/events.service';
-import { AddDetailsComponent } from './adds/add-details/add-details.component';
-import { BusinessDetailsComponent } from './business/business-details/business-details.component';
-import { EventsComponent } from './events/events/events.component';
-import { RateMovieComponent } from './movies/rate-movie/rate-movie.component';
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -85,7 +79,8 @@ import { RateMovieComponent } from './movies/rate-movie/rate-movie.component';
     AddDetailsComponent,
     BusinessDetailsComponent,
     EventsComponent,
-    RateMovieComponent
+    RateMovieComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +90,7 @@ import { RateMovieComponent } from './movies/rate-movie/rate-movie.component';
     HttpClientModule,
     ImageUploadModule, NgDatepickerModule
   ],
-  providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, MoviesService, GreetingService,EventsService, {
+  providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, MoviesService, GreetingService, EventsService, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true

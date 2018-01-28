@@ -31,8 +31,8 @@ export class PostNewAddComponent implements OnInit {
   }
 
   resizeOptions: ResizeOptions = {
-    resizeMaxHeight: 300,
-    resizeMaxWidth: 300
+    resizeMaxHeight: 500,
+    resizeMaxWidth: 500
   };
 
   selected(imageResult: ImageResult) {

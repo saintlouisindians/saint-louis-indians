@@ -1,7 +1,13 @@
-<div class="col-md-7 col-xs-12 col-sm-6">
+<div>
   <h3>Logout</h3>
 
   <div class="alert alert-success" *ngIf="!profileService.isLoggedIn">
-    You have successfully logged out.
+    <h4> <i class="fa fa-check-square fa-2x" aria-hidden="true"></i> You've logged out.</h4>
+    You're now securely logged out. We hope to see you again soon.
   </div>
+
+  <div>
+    <button class="btn btn-success" routerLink="/login">Log Back In</button>
+  </div>
+
 </div>

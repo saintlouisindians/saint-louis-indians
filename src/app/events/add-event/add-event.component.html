@@ -3,12 +3,25 @@
   <form [formGroup]="addForm">
     <div class="form-group">
       <input type="text" class="form-control" formControlName="title" placeholder="Title" />
+      <div *ngIf="addForm.get('title').dirty && addForm.get('title').value==''" class="text-danger">
+        Required.
+      </div>
     </div>
     <div class="form-group">
       <input type="text" class="form-control" formControlName="eventType" placeholder="Event Type" />
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" formControlName="description" placeholder="Description" />
+      <textarea type="text" class="form-control" formControlName="description" placeholder="Description"></textarea>
+      <div *ngIf="addForm.get('description').dirty && addForm.get('description').value==''" class="text-danger">
+        Required.
+      </div>
+
+      <div class="text-danger" *ngIf="addForm.get('description').value.length>500">
+        <em>cannot exceed 500 characters</em>
+      </div>
+      <div class="pull-right" *ngIf="addForm.get('description').value.length<=500">
+        <em class="text-success"><strong>{{500-addForm.get('description').value.length}} </strong></em>Characters Remaining..
+      </div>
     </div>
     <div class="form-group">
       <input type="date" class="form-control" formControlName="startDate" />
@@ -23,12 +36,14 @@
       <ng-container *ngFor="let image of this.addForm.value.images">
         <div class="bordered col-md-1">
           <i class="fa fa-window-close-o text-danger pull-right" (click)="removeImage(image)"></i>
-          <img src="{{image.image}}" style="width:60px; height:60px" /> 
+          <img src="{{image.image}}" style="width:60px; height:60px" />
         </div>
       </ng-container>
     </div>
     <div class="form-group" style="clear:both">
-      <button class="btn btn-success form-control" (click)="onSubmit()">Submit</button>
+      <button class="btn btn-success form-control" [disabled]="!addForm.valid" (click)="onSubmit()">Submit</button>
     </div>
   </form>
 </div>
+
+<app-modal [modelPopup]="modal"></app-modal>

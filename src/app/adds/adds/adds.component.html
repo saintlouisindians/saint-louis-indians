@@ -1,5 +1,5 @@
 
-<div class="col-md-7 col-xs-12 col-sm-6" >
+<div>
 <h3>{{subCategoryName}}</h3>
   <div class="panel panel-success" *ngFor="let add of adds" (click)="onaddSelect(add)">
     <div class="panel-heading">
@@ -9,7 +9,7 @@
 
     <div class="panel-body">
       <ul class="list-unstyled">
-        <li><em>{{add.Description}}</em> <strong> <button class="btn-link" (click)="onaddSelect(add)">View Images</button></strong></li>
+        <li><em>{{add.Description}}</em> <strong> <button *ngIf="add.Images && add.Images.length>0" class="btn-link" (click)="onaddSelect(add)">View Images</button></strong></li>
         <li *ngIf="add.Images && add.Images.length>0">
           <ng-container *ngFor="let image of add.Images">
             <div class="bordered col-md-1 col-sm-1 col-xs-2">

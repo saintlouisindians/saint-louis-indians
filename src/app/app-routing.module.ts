@@ -18,11 +18,13 @@ import { ErrorComponent } from './error/error.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { EventsComponent } from './events/events/events.component';
+import { EventDetailsComponent } from './events/event-details/event-details.component'
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'movies', pathMatch: 'full' },
   { path: 'postadd', component: PostNewAddComponent, canActivate: [AuthGuard] },
- // { path: 'home', component: HomeComponent },
+  { path: 'home', component: MoviesComponent },
   { path: 'myadds', component: MyaddsComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -36,8 +38,9 @@ const routes: Routes = [
   { path: 'movies', component: MoviesComponent },
   { path: 'error/:code', component: ErrorComponent },
   { path: 'manage-users', component: ManageUsersComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
-  { path: 'add-event', component: AddEventComponent },
-  { path: 'events', component: EventsComponent }
+  { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard] },
+  { path: 'events', component: EventsComponent },
+  { path: 'event-detail/:id', component: EventDetailsComponent }
 ]
 
 @NgModule({

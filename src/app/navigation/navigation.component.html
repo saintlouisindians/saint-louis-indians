@@ -8,7 +8,7 @@
             <img src="../../../assets/arch.jpg" (click)="openNav()" style="margin:auto; width:100%; height:70px" />
         </div>
         <div class="text-center largenav">
-            <img src="../../../assets/arch.jpg" routerLink="/home" style="margin:auto;" />
+            <img src="../../../assets/arch.jpg" routerLink="/movies" style="margin:auto;" />
 
         </div>
         <div class="row row2">
@@ -18,7 +18,7 @@
                 <div class="parent row smallnav">
                     <ng-container *ngFor="let nav of smallNavData">
                         <div [ngClass]="nav.active?'active':''" class="child">
-                            <a class="links" (click)="onSmallNavClick(nav)">{{nav.text}}</a>
+                            <a class="links" [ngClass]="nav.active?'active':''" (click)="onSmallNavClick(nav)">{{nav.text}}</a>
                         </div>
                     </ng-container>
                 </div>
@@ -55,10 +55,10 @@
                     <app-login-status></app-login-status>
                 </li>
                 <li class="upper-links dropdown pull-right">
-                    <a class="links" href="#"><i class="fa fa-buysellads"></i> Adds <i class="fa fa-angle-down"></i></a>
+                    <a class="links" href="#"><i class="fa fa-buysellads"></i> Ads <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li class="profile-li"><a class="profile-links" routerLink="myadds">Manage My Adds</a></li>
-                        <li class="profile-li"><a class="profile-links" routerLink="postadd">Post A New Add</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="myadds">Manage My Ads</a></li>
+                        <li class="profile-li"><a class="profile-links" routerLink="postadd">Post A New Ad</a></li>
                     </ul>
                 </li>
             </ul>
@@ -67,7 +67,7 @@
 </div>
 <div [style.width]="navWidth" id="mySidenav" class="sidenav">
     <div class="container smallNavHeader" style="padding-top: 10px;" (click)="closeNav()">
-        <a routerLink="home"> <span class="sidenav-heading">Home</span></a>
+        <a routerLink="movies"> <span class="sidenav-heading">Home</span></a>
         <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
         <app-login-status></app-login-status>
     </div>
@@ -148,15 +148,15 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" class="collapsed" data-parent="#accordion" href="#collapseAdds">
-                    <i class="fa fa-buysellads"></i> Adds
+                    <i class="fa fa-buysellads"></i> Ads
                 </a>
                 </h4>
             </div>
             <div id="collapseAdds" class="panel-collapse collapse">
                 <div class="panel-body">
                     <ul class="list-unstyled">
-                        <li (click)="closeNav()"><a routerLink="myadds">Manage My Adds</a></li>
-                        <li (click)="closeNav()"><a routerLink="postadd">Post A New Add</a></li>
+                        <li (click)="closeNav()"><a routerLink="myadds">Manage My Ads</a></li>
+                        <li (click)="closeNav()"><a routerLink="postadd">Post A New Ad</a></li>
                     </ul>
                 </div>
             </div>

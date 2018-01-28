@@ -1,15 +1,22 @@
-<div class="col-md-7 col-xs-12 col-sm-6">
+<div>
   <h3>My Adds</h3>
 
   <div class="panel panel-success animated" *ngFor="let add of adds" [ngClass]="animationClass[add.ID]">
     <div class="panel-heading">
       <strong>{{add.Title}}</strong>
-      <small *ngIf="add.Price>0" class="pull-right text-primary badge">$ <em>{{add.Price}}</em></small>
+      <strong small *ngIf="add.Price>0" class="pull-right text-primary badge">$ {{add.Price}}</strong>
     </div>
 
     <div class="panel-body">
       <ul class="list-unstyled">
         <li>{{add.Description}}</li>
+        <li *ngIf="add.Images && add.Images.length>0">
+          <ng-container *ngFor="let image of add.Images">
+            <div class="bordered col-md-1 col-sm-1 col-xs-2">
+              <img class="img-responsive" src="{{image.Image}}" style="width:60px; height:60px" />
+            </div>
+          </ng-container>
+        </li>
       </ul>
       <ul class="list-unstyled col-md-6 col-xs-9">
         <li *ngIf="add.ContactEmail"><label><i class="fa fa-envelope"></i> Email:</label> <a href="http://mailto:{{add.Email}}">{{add.ContactEmail}}</a></li>

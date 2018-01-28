@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../services/events.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-events',
@@ -9,7 +10,7 @@ import { EventsService } from '../../services/events.service';
 export class EventsComponent implements OnInit {
 
   events: any[];
-  constructor(private eventsSvc: EventsService) { }
+  constructor(private eventsSvc: EventsService, private router: Router) { }
 
   ngOnInit() {
     this.getNext30Events();
@@ -22,7 +23,20 @@ export class EventsComponent implements OnInit {
     this.eventsSvc.getEvents(today, thirtyDay).subscribe(
       (resp) => {
         this.events = resp
+        console.log(resp);
       }
     )
+  }
+
+  onEventSelect(eve) {
+    localStorage.setItem('selectedEvent', JSON.stringify(eve));
+    this.router.navigate(['event-detail/' + eve.ID]);
+  }
+
+  getDay(dateString: string) {
+    return dateString.split(',')[0].split(' ')[1];
+  }
+  getMonth(dateString: string){
+    return dateString.split(',')[0].split('')[0];
   }
 }

@@ -35,33 +35,40 @@ export class ModifyAddComponent implements OnInit, OnChanges {
       this.getSubCategories();
     }
     if (this.add) {
-      this.src = this.add.Image;
       this.showModal = true;
       this.modifyForm = this.fb.group({
         id: new FormControl(this.add.ID),
         title: new FormControl(this.add.Title, [Validators.required, Validators.maxLength(50)]),
         description: new FormControl(this.add.Description, [Validators.required, Validators.maxLength(500)]),
-        image: new FormControl(),
+        images: this.fb.array([]),
         price: new FormControl(this.add.Price == 0 ? '' : this.add.Price),
         subCategoryID: new FormControl(this.add.SubCategoryID),
         contactPhone: new FormControl(this.add.ContactPhone, [Validators.maxLength(10), Validators.pattern('[1-9]{1}[0-9]{9}')]),
         contactEmail: new FormControl(this.add.ContactEmail, [Validators.email, Validators.required])
       });
-
+      if (this.add.Images && this.add.Images.length > 0) {
+        this.modifyForm.value.images = this.add.Images
+      }
     }
   }
 
   resizeOptions: ResizeOptions = {
-    resizeMaxHeight: 300,
-    resizeMaxWidth: 300
+    resizeMaxHeight: 500,
+    resizeMaxWidth: 500
   };
 
   selected(imageResult: ImageResult) {
-    this.src = imageResult.resized
+    this.modifyForm.value.images.push({
+      image: imageResult.resized
       && imageResult.resized.dataURL
-      || imageResult.dataURL;
+      || imageResult.dataURL
+    });
 
-    this.modifyForm.value.image = this.src;
+    this.add.Images.push({
+      Image: imageResult.resized
+      && imageResult.resized.dataURL
+      || imageResult.dataURL
+    })
   }
 
   getSubCategories() {
@@ -76,6 +83,7 @@ export class ModifyAddComponent implements OnInit, OnChanges {
     this.showModal = false;
   }
   onSubmit() {
+    this.modifyForm.value.images = this.add.Images;
     this.addsSvc.updateAdd(this.modifyForm.value).subscribe(
       (resp) => {
         this.closeModal();
