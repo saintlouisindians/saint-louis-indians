@@ -1,0 +1,18 @@
+<div>
+  <h3>Send Confirmation Email</h3>
+  <form [formGroup]="sendForm">
+    <div class="form-group">
+      <input class="form-control input-lg" type="email" name="email" formControlName="email" />
+      <div class="text-danger" *ngIf="sendForm.get('email').dirty && sendForm.get('email').value==''">
+        Required!
+      </div>
+      <div class="text-danger" *ngIf="sendForm.get('email').dirty && sendForm.get('email').status!='VALID' && sendForm.get('email').value!=''">
+        Please enter a valid email!
+      </div>
+    </div>
+    <div>
+      <button class="btn btn-lg btn-success" [disabled]="!sendForm.valid" (click)="onSend()">Send</button>
+    </div>
+  </form>
+</div>
+<app-modal [modelPopup]="modal"></app-modal>

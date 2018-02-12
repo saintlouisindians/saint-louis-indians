@@ -1,3 +1,7 @@
+
+  <div *ngIf="!businesses" class="text-success text-center">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
+  </div>
 <div *ngIf="businesses">
   <h3>{{BusinessSubCategory}}</h3>
 
@@ -13,16 +17,20 @@
         </div>
         <div class="col-md-5 text-center pull-right col-xs-6">
           <ul class="list-unstyled" *ngIf=bus.Address>
-            <li>{{bus.Address.Address1}}</li>
-            <li *ngIf="bus.Address.Address2">{{bus.Address.Address2}}</li>
-            <li>{{bus.Address.State}} {{bus.Address.City}} {{bus.Address.ZipCode}}</li>
-            <li><a href="http://mailto:{{bus.Email}}"><i class="fa fa-envelope"></i> {{bus.Email}}</a>
+            <a target="_blank" href="https://maps.google.com/?q={{bus.Address.Address1 + ' '+ bus.Address.Address2 + ' '+bus.Address.State+' '+bus.Address.City+' '+ bus.Address.ZipCode}}">
+              <li><i class="fa fa-map-marker fa-2x"></i> {{bus.Address.Address1}}</li>
+              <li *ngIf="bus.Address.Address2">{{bus.Address.Address2}}</li>
+              <li>{{bus.Address.State}} {{bus.Address.City}} {{bus.Address.ZipCode}}</li>
+            </a>
+          </ul>
+          <ul class="list-unstyled">
+            <li><a href="http://mailto:{{bus.Email}}"> {{bus.Email}}</a>
             </li>
             <li *ngIf="bus.Phone">
-              <a href="tel:{{bus.Phone}}">({{bus.Phone.substring(0,3)}})-{{bus.Phone.substring(3,6)}}-{{bus.Phone.substring(6,10)}}</a>
+              <a href="tel:{{bus.Phone}}"><i class="fa fa-phone-square"></i> ({{bus.Phone.substring(0,3)}})-{{bus.Phone.substring(3,6)}}-{{bus.Phone.substring(6,10)}}</a>
             </li>
             <li>
-              <a href="{{bus.WebLink}}">{{bus.WebLink}}</a>
+              <a target="_blank" href="{{bus.WebLink}}">{{bus.WebLink}}</a>
             </li>
           </ul>
           <ul class="list-unstyled">

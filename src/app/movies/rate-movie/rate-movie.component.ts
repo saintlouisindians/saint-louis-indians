@@ -12,14 +12,16 @@ import { Router } from '@angular/router';
 export class RateMovieComponent implements OnInit {
 
   @Input() movie: any;
+  @Input() changed: boolean;
   stars: any[];
   rating: number;
-  showModal: boolean;
+  showReviewModal: boolean[]=[];
   review: string;
   movieID: number;
   loadingModal: ModalPopUp;
-
-   @Output() movieUpdated = new EventEmitter<boolean>();
+  
+  
+  @Output() movieUpdated = new EventEmitter<boolean>();
   constructor(private movieSvc: MoviesService, private router: Router) { }
   isLogedIn: boolean;
   ngOnInit() {
@@ -33,8 +35,8 @@ export class RateMovieComponent implements OnInit {
       this.isLogedIn = true;
     }
     if (this.movie) {
-      this.showModal = true;
-      this.movieID = this.movie.ID
+      this.movieID = this.movie.ID;
+      this.showReviewModal[this.movieID] = true;
       if (!this.isLogedIn) {
         this.router.navigate(['/login'], { queryParams: { returnUrl: 'movies' } });
       }
@@ -71,7 +73,7 @@ export class RateMovieComponent implements OnInit {
     this.movieSvc.addReview(reviewForm.value).subscribe(
       (resp) => {
         this.loadingModal.operation = 'close';
-        this.showModal = false;
+        this.showReviewModal[this.movieID] = false;
         this.movieUpdated.emit(true);
       }
     )
@@ -79,6 +81,6 @@ export class RateMovieComponent implements OnInit {
   }
 
   closeModal() {
-    this.showModal = false;
+    this.showReviewModal[this.movieID] = false;
   }
 }

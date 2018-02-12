@@ -2,24 +2,28 @@
   <h3>Login</h3>
   <form [formGroup]="loginForm">
     <div class="form-group">
-      <input type="email" class="form-control" formControlName="userName" placeholder="Email" />
+      <input type="email" class="form-control input-lg" formControlName="userName" placeholder="Email" />
       <div *ngIf="!loginForm.get('userName').valid && !loginForm.get('password').pristine">
         Required.
       </div>
 
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+      <input type="password" class="form-control input-lg" formControlName="password" placeholder="Password" />
       <div *ngIf="!loginForm.get('password').valid && !loginForm.get('password').pristine" class="text-danger">
         Required.
       </div>
     </div>
     <div class="form-group">
-      <button type="button" [disabled]="!loginForm.valid" (click)="onSubmit()" class="btn btn-success form-control">Submit</button>
+      <button type="button" [disabled]="!loginForm.valid" (click)="onSubmit()" class="btn btn-lg btn-success full-width">Submit</button>
     </div>
   </form>
   <div class="alert alert-danger" *ngIf="status">
     {{status}}
+
+    <div *ngIf="status=='Email is not confirmed.'">
+     <a routerLink="/send-confirmation"> Resend the confirmation email?</a>
+    </div>
   </div>
   <div class="text-center">
 New user? <a routerLink="/register">Register</a>

@@ -29,15 +29,10 @@ export class BusinessComponent implements OnInit {
   }
 
   getBusinesses(id: number) {
-    this.modal = {
-      operation: 'open',
-      type: 'loading',
-      message: 'Something went wrong. Please try again'
-    }
     this.busSvc.getBusinesses(id).subscribe(
       resp => {
         this.businesses = resp;
-        this.modal.operation = 'close';
+        //this.modal.operation = 'close';
       }
     )
   }

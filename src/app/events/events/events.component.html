@@ -1,5 +1,9 @@
 <h3>Upcoming Events</h3>
-<div class="panel" *ngFor="let event of events; let i=index" id="accordion">
+
+ <div *ngIf="!events" class="text-success text-center">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
+  </div>
+<div class="panel animated slideInUp" *ngFor="let event of events; let i=index" id="accordion" [style.animation-duration]="i+'s'">
   <div class="panel-heading">
     <h4 class="panel-title">
       <a (click)="onEventSelect(event)">

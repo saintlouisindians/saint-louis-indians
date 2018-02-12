@@ -3,7 +3,7 @@
     <div>
       <i class="fa fa-window-close-o text-success pull-right" (click)="closeModal()"></i>
     </div>
-    <img src="{{selectedImage}}" class="img-responsive" style="width:400px; height:400px; margin:auto" />
+    <img src="{{selectedImage}}" class="img-responsive" style="margin:auto" />
     <div *ngFor="let image of business.Images">
       <div class="bordered col-md-1 col-sm-1 col-xs-2 text-center">
         <img src="{{image.Image}}" (click)="onImageSelected(image)" class="img-responsive" style="margin:auto" />

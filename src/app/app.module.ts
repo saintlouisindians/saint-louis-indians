@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageUploadModule } from 'ng2-imageupload';
 import { NgDatepickerModule } from 'ng2-datepicker';
+//import { SpinnerModule } from 'angular-spinners';
 
 
 import { AppComponent } from './app.component';
@@ -48,6 +49,7 @@ import { SubcategoriesComponent } from './subcategories/subcategories.component'
 import { BusinessService } from './services/business.service';
 import { GreetingService } from './services/greeting.service';
 import { EventsService } from './services/events.service';
+import { SendConfirmationComponent } from './profile/send-confirmation/send-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,8 @@ import { EventsService } from './services/events.service';
     BusinessDetailsComponent,
     EventsComponent,
     RateMovieComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    SendConfirmationComponent
   ],
   imports: [
     BrowserModule,

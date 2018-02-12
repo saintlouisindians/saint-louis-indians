@@ -7,7 +7,7 @@
 }
 
 a:after {
-    content: '\f077';
+    content: '\f077 Show Less';
     font-family: FontAwesome;
     position: absolute;
     right: 20px;
@@ -16,7 +16,7 @@ a:after {
 }
 
  a.collapsed:after {
-    content: '\f078';
+    content: '\f078 Details';
     font-family: FontAwesome;
     position: absolute;
     vertical-align: middle;
@@ -24,8 +24,8 @@ a:after {
 
 .panel-heading a{
     display: block;
-    background: #00a680;
-    color: #ffffff;
+    background:#fff;; 
+    color: #00a680;
     padding: 5px 10px;
     text-decoration: none;
     position: relative;
@@ -38,4 +38,26 @@ a:after {
 .panel-heading{
     padding-left: 0;
     padding-right: 0;
+
+    a:hover{
+        background-color: #00a680;
+        color: #fff;
+    }
 }
+
+.panel-title:hover{
+   //background-color: orange;
+}
+
+.panel{
+    border: none;
+    overflow: auto;
+}
+
+.movie-details{
+    .fa{
+        color: #00a680;
+        margin-right: 2px;
+    }
+}
+

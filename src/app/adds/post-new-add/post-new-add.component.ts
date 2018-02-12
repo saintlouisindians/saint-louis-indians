@@ -72,6 +72,7 @@ export class PostNewAddComponent implements OnInit {
     this.addsSvc.createAdd(this.addForm.value).subscribe(
       (resp) => {
         this.modal.type = 'success';
+        this.modal.returnUrl='home'
       },
       (error) => {
         this.modal.type = 'error';

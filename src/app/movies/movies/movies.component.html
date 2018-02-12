@@ -1,36 +1,37 @@
 <div id="accordion">
   <h3>Now In Theaters</h3>
+  <div *ngIf="!movies" class="text-success text-center">
+    <i class="fa fa-spinner fa-spin fa-5x"></i>
+  </div>
+
   <div class="panel" *ngFor="let movie of movies;let i=index">
-    <div class="panel-heading col-xs-12">
+    <div class="panel-heading col-xs-12 animated slideInLeft" [style.animation-duration]="i+1+'s'">
       <h4 class="panel-title">
-        <a [class.large-font]="!hideHeaderImg[i]" data-toggle="collapse" (click)="toggleHeaderImg(i)" class="collapsed" data-parent="#accordion" href="#collapseMovies{{i}}">
-                    <i class="fa fa-movie"></i> <img *ngIf="!hideHeaderImg[i]" src="{{movie.Image}}" class="image-responsive" style="width:300px; height:200px;" />
+        <img src="{{movie.Image}}" class="image-responsive" style="width:100%; height:250px;" />
+        <a [class.large-font]="!hideHeaderImg[i]" data-toggle="collapse" (click)="toggleHeaderImg(i)" class="collapsed" data-parent="#accordion"
+          href="#collapseMovies{{i}}">
+                    <i class="fa fa-movie"></i> 
                {{movie.Name}}
                   </a>
       </h4>
     </div>
     <div id="collapseMovies{{i}}" class="panel-collapse collapse panel-body">
       <div class="row">
-        <div class="col-md-8 col-xs-12">
-          <img src="{{movie.Image}}" class="image-responsive" style="width:100%" />
-        </div>
-        <div class="col-md-4 col-xs-12">
+
+        <div class="col-md-12 col-xs-12">
           <ul class="list-unstyled">
-            <li>
-              <h3>{{movie.Name}}</h3>
-            </li>
             <p>
               <strong>Synopsis: </strong>
               <em>{{movie.Description}}</em>
             </p>
           </ul>
-          <ul class="list-unstyled">
-            <li><label>Start Date:</label> {{movie.ReleaseDate | date:'mediumDate'}}</li>
-            <li><label>End Date:</label> {{movie.LastDate | date:'mediumDate'}}</li>
-            <li><label>Directed By:</label> {{movie.Director}}</li>
-            <li><label>Cast:</label> {{movie.Cast}}</li>
-            <li><label>Producer:</label> {{movie.Producer}}</li>
-            <li><label>Music By:</label> {{movie.MusicDirector}}</li>
+          <ul class="list-unstyled movie-details">
+            <li><i class="fa fa-calendar"></i><label> Start Date:</label> {{movie.ReleaseDate | date:'mediumDate'}}</li>
+            <li style="display:none"><label> End Date:</label> {{movie.LastDate | date:'mediumDate'}}</li>
+            <li><i class="fa fa-american-sign-language-interpreting"></i><label> Directed By:</label> {{movie.Director}}</li>
+            <li><i class="fa fa-users"></i><label> Cast:</label> {{movie.Cast}}</li>
+            <li><i class="fa fa-money"></i><label> Producer:</label> {{movie.Producer}}</li>
+            <li><i class="fa fa-music"></i><label> Music By:</label> {{movie.MusicDirector}}</li>
           </ul>
           <ul class="list-unstyled">
             <li *ngIf="movie.Reviews && movie.Reviews.length > 0">
@@ -49,13 +50,13 @@
               <i class="fa fa-2x fa-star-half-o" *ngIf="movie.Rating % 1 > 0"></i>
             </li>
 
-            <li style="font-weight:bold; color:#00a680">{{movie.Rating}}</li>
+            <li style="font-weight:bold;font-size:x-large; color:#00a680">{{movie.Rating | number : '1.1-2'}}</li>
           </ul>
         </div>
       </div>
 
       <div class="panel" id="nested">
-        <div *ngIf="movie.Reviews && movie.Reviews.length > 0">
+        <div class="bordered" *ngIf="movie.Reviews && movie.Reviews.length > 0">
           <div class="panel-heading">
             <h4 class="text-primary">
               <a data-toggle="collapse" class="collapsed" data-parent="#nested" href="#collapseReviews{{i}}">
@@ -85,10 +86,45 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-12">
-        <button class="btn btn-warning" (click)="onReviewClick(movie)">Rate this movie</button>
+      <div class="panel" id="RateForm">
+        <div class="bordered">
+          <div class="panel-heading">
+            <h4>
+              <a data-toggle="collapse" class="collapsed" data-parent="RateForm" href="#collapsedReviewForm{{i}}" (click)="onReviewClick()">Rate this Movie</a>
+            </h4>
+          </div>
+          <div class="panel-body collapse" *ngIf="isLogedIn" id="collapsedReviewForm{{i}}">
+            <div class="col-md-12 col-sm-12 col-xs-11">
+              <form #reviewForm="ngForm">
+                <div>
+                  <div class="form-group">
+                    <ul class="list-unstyled list-inline">
+                      <li> <label>Rating: </label></li>
+                      <li class="list-inline" *ngFor="let item of stars">
+                        <i class="fa fa-2x fa-star-o" *ngIf="!item.selected || !rating[movie.ID]" (click)="onStarSelect(item,movie)"></i>
+                        <i class="fa fa-2x fa-star" *ngIf="item.selected && rating[movie.ID]" (click)="onStarSelect(item,movie)"></i>                     
+                      </li>
+                      <li><strong style="color:#00a680; font-size:xx-large">{{rating[movie.ID] | number : '1.1-2'}}</strong></li>
+                    </ul>
+                  </div>
+                  <div class="form-group">
+                    <input type="number" hidden name="rating" [(ngModel)]="rating[movie.ID]" required />
+                   
+                    <label>Review: <small></small></label>
+                    <textarea class="form-control" name="review" required [(ngModel)]="review[movie.ID]"></textarea>
+                    <div class="text-right">
+                      <em>Enter up to 500 characters.</em>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-success" [disabled]="!reviewForm.form.valid" (click)="onSubmit(reviewForm)">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <app-modal [modelPopup]="modal"></app-modal>
-    <app-rate-movie [movie]="selectedMovie" (movieUpdated)="getMovies()"></app-rate-movie>

@@ -30,6 +30,7 @@ export class EventsComponent implements OnInit {
 
   onEventSelect(eve) {
     localStorage.setItem('selectedEvent', JSON.stringify(eve));
+    window.scrollTo(0, 0);
     this.router.navigate(['event-detail/' + eve.ID]);
   }
 

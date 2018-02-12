@@ -19,6 +19,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { AddEventComponent } from './events/add-event/add-event.component';
 import { EventsComponent } from './events/events/events.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component'
+import { SendConfirmationComponent } from './profile/send-confirmation/send-confirmation.component';
 
 
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path: 'manage-users', component: ManageUsersComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'add-event', component: AddEventComponent, canActivate: [AuthGuard] },
   { path: 'events', component: EventsComponent },
-  { path: 'event-detail/:id', component: EventDetailsComponent }
+  { path: 'event-detail/:id', component: EventDetailsComponent },
+  { path: 'send-confirmation', component: SendConfirmationComponent }
 ]
 
 @NgModule({

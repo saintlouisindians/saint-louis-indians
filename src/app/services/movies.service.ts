@@ -6,6 +6,7 @@ import { _throw } from 'rxjs/observable/throw';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Movie } from '../models/movie.model';
+//import { SpinnerService } from 'angular-spinners';
 
 @Injectable()
 export class MoviesService {

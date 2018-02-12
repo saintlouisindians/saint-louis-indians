@@ -35,6 +35,11 @@ export class ProfileService {
     );
   }
 
+  sendRegisterConfirmEmail(model: any) {
+    return this.http.post(AppSettings.apiUrl + '/api/Account/SendRegisterConfirmEmail', model, httpOptions).pipe(
+      catchError(this.handleError<any>('sendRegisterConfirmEmail'))
+    )
+  }
   login(loginModel: LoginModel): Observable<any> {
     return this.http.post(AppSettings.apiUrl + '/token', "UserName=" + encodeURIComponent(loginModel.userName) +
       "&Password=" + encodeURIComponent(loginModel.password) +

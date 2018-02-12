@@ -69,11 +69,12 @@ export class AddBusinessComponent implements OnInit {
       this.modal = {
         type: 'loading',
         operation: 'open',
-        message: 'Successfullt added.'
+        message: 'Successfully added.'
       }
       this.businessSvc.addBusiness(this.addBusinessForm.value).subscribe(
         (resp) => {
           this.modal.type = 'success';
+          this.modal.returnUrl='home';
         },
         (error) => {
           this.modal.type = 'error';

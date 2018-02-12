@@ -1,4 +1,4 @@
-<div class="col-md-7 col-sm-6">
+
   <h3>Add Event</h3>
   <form [formGroup]="addForm">
     <div class="form-group">
@@ -44,6 +44,6 @@
       <button class="btn btn-success form-control" [disabled]="!addForm.valid" (click)="onSubmit()">Submit</button>
     </div>
   </form>
-</div>
+
 
 <app-modal [modelPopup]="modal"></app-modal>

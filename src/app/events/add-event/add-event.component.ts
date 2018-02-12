@@ -51,6 +51,7 @@ export class AddEventComponent implements OnInit {
     this.eventSvc.addEvent(this.addForm.value).subscribe(
       (resp) => {
         this.modal.type = 'success';
+        this.modal.returnUrl='home';
       },
       (error) => {
         this.modal.type = 'error';

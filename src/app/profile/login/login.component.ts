@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
         if (error && error.status === 400) {
           this.status = error.error.error_description;
           this.modal.operation='close';
+          
         }
         else {
           this.modal.type = 'error';
