@@ -18,7 +18,7 @@ export class PostNewAddComponent implements OnInit {
   modal: ModalPopUp;
   constructor(private fb: FormBuilder, private addsSvc: AddsService) { }
   subCategories: any[] = [];
-   mask: any[] = ['+', '1', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+   mask: any[] = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   ngOnInit() {
     this.getSubCategories();
