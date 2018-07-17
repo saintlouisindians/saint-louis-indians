@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ImageUploadModule } from 'ng2-imageupload';
 import { NgDatepickerModule } from 'ng2-datepicker';
-//import { SpinnerModule } from 'angular-spinners';
+import {NgxAutoScrollModule} from "ngx-auto-scroll";
+import { TextMaskModule } from 'angular2-text-mask';
 
 
 import { AppComponent } from './app.component';
@@ -91,7 +92,7 @@ import { SendConfirmationComponent } from './profile/send-confirmation/send-conf
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ImageUploadModule, NgDatepickerModule
+    ImageUploadModule, NgDatepickerModule, TextMaskModule
   ],
   providers: [ProfileService, AuthGuard, NavigationService, AddsService, BusinessService, MoviesService, GreetingService, EventsService, {
     provide: HTTP_INTERCEPTORS,

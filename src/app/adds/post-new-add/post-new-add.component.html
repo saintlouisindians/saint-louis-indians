@@ -19,7 +19,8 @@
       </div>
     </div>
     <div class="form-group">
-      <input type="phone" formControlName="contactPhone" class="form-control" placeholder="Phone(optional)" />
+      <input type="phone" name="contactPhone" formControlName="contactPhone" class="form-control" placeholder="Phone(optional)" [textMask]="{mask: mask}"
+           pattern="\+\d \(\d{3}\) \d{3}-\d{4}"/>
     </div>
     <div class="form-group">
       <input type="phone" formControlName="price" class="form-control" placeholder="Price(optional)" />

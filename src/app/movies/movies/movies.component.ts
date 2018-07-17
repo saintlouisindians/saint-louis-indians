@@ -22,12 +22,12 @@ export class MoviesComponent implements OnInit {
   loadingModal: ModalPopUp;
 
 
-  rating: number[]=[];
-  review: string[]=[];
+  rating: number[] = [];
+  review: string[] = [];
   movieID: number;
   rateForm: FormGroup;
-  isLogedIn:boolean;
-  constructor(private movieSvc: MoviesService, private fb: FormBuilder, private router:Router) { }
+  isLogedIn: boolean;
+  constructor(private movieSvc: MoviesService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.getMovies();
@@ -56,11 +56,12 @@ export class MoviesComponent implements OnInit {
   }
 
   onReviewClick(movie) {
-     if (sessionStorage && sessionStorage.getItem('access_token')) {
+    if (sessionStorage && sessionStorage.getItem('access_token')) {
       this.isLogedIn = true;
     }
-    else{
-         this.router.navigate(['/login'], { queryParams: { returnUrl: 'movies' } });
+    else {
+      window.scrollTo(0, 0);
+      this.router.navigate(['/login'], { queryParams: { returnUrl: 'movies' } });
     }
   }
 
@@ -68,7 +69,7 @@ export class MoviesComponent implements OnInit {
     this.hideHeaderImg[i] ? this.hideHeaderImg[i] = false : this.hideHeaderImg[i] = true;
   }
 
-  onStarSelect(star,movie) {
+  onStarSelect(star, movie) {
     this.stars.forEach(
       (element) => {
         if (element.value === star.value) {
@@ -89,14 +90,15 @@ export class MoviesComponent implements OnInit {
 
   onSubmit(reviewForm) {
     console.log(reviewForm.value);
-    this.loadingModal = {
+    this.modal = {
       operation: 'open',
       message: '',
       type: 'loading'
     }
     this.movieSvc.addReview(reviewForm.value).subscribe(
       (resp) => {
-        this.loadingModal.operation = 'close';
+        this.modal.operation = 'close';
+        this.getMovies();
         //this.showReviewModal[this.movieID] = false;
         //this.movieUpdated.emit(true);
       }

@@ -102,14 +102,15 @@
                       <li> <label>Rating: </label></li>
                       <li class="list-inline" *ngFor="let item of stars">
                         <i class="fa fa-2x fa-star-o" *ngIf="!item.selected || !rating[movie.ID]" (click)="onStarSelect(item,movie)"></i>
-                        <i class="fa fa-2x fa-star" *ngIf="item.selected && rating[movie.ID]" (click)="onStarSelect(item,movie)"></i>                     
+                        <i class="fa fa-2x fa-star" *ngIf="item.selected && rating[movie.ID]" (click)="onStarSelect(item,movie)"></i>
                       </li>
                       <li><strong style="color:#00a680; font-size:xx-large">{{rating[movie.ID] | number : '1.1-2'}}</strong></li>
                     </ul>
                   </div>
                   <div class="form-group">
                     <input type="number" hidden name="rating" [(ngModel)]="rating[movie.ID]" required />
-                   
+                    <input type="number" hidden name="movieID" [(ngModel)]="movie.ID" />
+
                     <label>Review: <small></small></label>
                     <textarea class="form-control" name="review" required [(ngModel)]="review[movie.ID]"></textarea>
                     <div class="text-right">

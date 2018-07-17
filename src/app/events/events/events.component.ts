@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventsService } from '../../services/events.service';
 import { Router } from '@angular/router';
+import {NgxAutoScroll} from "ngx-auto-scroll";
 
 @Component({
   selector: 'app-events',
@@ -9,11 +10,18 @@ import { Router } from '@angular/router';
 })
 export class EventsComponent implements OnInit {
 
+   @ViewChild(NgxAutoScroll) ngxAutoScroll: NgxAutoScroll;
+ 
+    public forceScrollDown(): void {
+        this.ngxAutoScroll.forceScrollDown();
+    }
+
   events: any[];
   constructor(private eventsSvc: EventsService, private router: Router) { }
 
   ngOnInit() {
     this.getNext30Events();
+    //this.forceScrollDown();
   }
 
   getNext30Events() {

@@ -3,6 +3,8 @@
  <div *ngIf="!events" class="text-success text-center">
     <i class="fa fa-spinner fa-spin fa-5x"></i>
   </div>
+
+  
 <div class="panel animated slideInUp" *ngFor="let event of events; let i=index" id="accordion" [style.animation-duration]="i+'s'">
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -44,4 +46,8 @@
       </div>
     </li>
   </ul>
+</div>
+
+<div ngx-auto-scroll lock-y-offset="10" observe-attributes>
+    <div *ngFor="let message of messages">{{ message }}</div>
 </div>

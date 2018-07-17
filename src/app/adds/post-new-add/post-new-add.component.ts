@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { ModalPopUp } from '../../models/modalPopUp';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { AddsService } from '../../services/adds.service'
+import { AddsService } from '../../services/adds.service';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-post-new-add',
@@ -16,6 +18,7 @@ export class PostNewAddComponent implements OnInit {
   modal: ModalPopUp;
   constructor(private fb: FormBuilder, private addsSvc: AddsService) { }
   subCategories: any[] = [];
+   mask: any[] = ['+', '1', ' ', '(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   ngOnInit() {
     this.getSubCategories();
@@ -79,5 +82,9 @@ export class PostNewAddComponent implements OnInit {
         this.modal.message = 'Something went wrong. Please try again.';
       }
     )
+  }
+
+  ngAfterViewChecked(){
+  console.log($('#contactPhone'));
   }
 }
